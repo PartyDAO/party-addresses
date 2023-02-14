@@ -1,0 +1,18 @@
+{
+  "Globals": "genesis",
+  "TokenDistributor": "genesis",
+  "ProposalExecutionEngine": "genesis",
+  "Party": "genesis",
+  "PartyFactory": "genesis",
+  "AuctionCrowdfund": "genesis",
+  "BuyCrowdfund": "genesis",
+  "CollectionBuyCrowdfund": "genesis",
+  "CrowdfundFactory": "genesis",
+  "CrowdfundNFTRenderer": "genesis",
+  "PartyGovernanceNFT": "genesis",
+  "PartyHelpers": "genesis",
+  "AllowListGateKeeper": "genesis",
+  "TokenGateKeeper": "genesis",
+  "RendererStorage": "genesis",
+  "PixeldroidConsoleFont": "genesis"
+}
