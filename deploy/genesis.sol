@@ -64,10 +64,9 @@ abstract contract Deploy {
     ZoraMarketWrapper public zoraMarketWrapper;
     PixeldroidConsoleFont public pixeldroidConsoleFont;
 
-    function deploy(LibDeployConstants.DeployConstants memory deployConstants)
-        public
-        virtual
-    {
+    function deploy(
+        LibDeployConstants.DeployConstants memory deployConstants
+    ) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         seaport = IOpenseaExchange(deployConstants.seaportExchangeAddress);
@@ -523,11 +522,9 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(address deployer)
-        internal
-        view
-        returns (uint256)
-    {
+    function _getDeployerGasUsage(
+        address deployer
+    ) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -604,10 +601,9 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(LibDeployConstants.DeployConstants memory deployConstants)
-        public
-        override
-    {
+    function deploy(
+        LibDeployConstants.DeployConstants memory deployConstants
+    ) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
@@ -682,11 +678,9 @@ contract DeployScript is Script, Deploy {
         console.log("Ending deploy script.");
     }
 
-    function generateJSONString(AddressMapping[] memory parts)
-        private
-        pure
-        returns (string memory)
-    {
+    function generateJSONString(
+        AddressMapping[] memory parts
+    ) private pure returns (string memory) {
         string memory vals = "";
         for (uint256 i; i < parts.length; ++i) {
             string memory newValue = string.concat(

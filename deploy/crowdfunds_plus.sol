@@ -45,46 +45,16 @@ abstract contract Deploy {
     // temporary variables to store deployed contract addresses
     Globals public globals =
         Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
-    IZoraAuctionHouse public zoraAuctionHouse;
-    AuctionCrowdfund public auctionCrowdfundImpl;
-    RollingAuctionCrowdfund public rollingAuctionCrowdfundImpl;
-    BuyCrowdfund public buyCrowdfundImpl;
-    CollectionBuyCrowdfund public collectionBuyCrowdfundImpl;
-    CollectionBatchBuyCrowdfund public collectionBatchBuyCrowdfundImpl;
+    AuctionCrowdfund public auctionCrowdfund;
+    RollingAuctionCrowdfund public rollingAuctionCrowdfund;
+    BuyCrowdfund public buyCrowdfund;
+    CollectionBuyCrowdfund public collectionBuyCrowdfund;
+    CollectionBatchBuyCrowdfund public collectionBatchBuyCrowdfund;
     CrowdfundFactory public crowdfundFactory;
-    Party public partyImpl =
-        Party(payable(0xa3b4A7110b48FDFf1970D787D1cdCB9679176464));
-    PartyFactory public partyFactory =
-        PartyFactory(0xD1bc5eED9a90911caa76A8EA1f11C4Ea012976FC);
-    ProposalExecutionEngine public proposalEngineImpl =
-        ProposalExecutionEngine(0xD36689563949DDF6FF01d89b514f6BFc2b443dDE);
-    TokenDistributor public tokenDistributor =
-        TokenDistributor(0xE6F58B31344404E3479d81fB8f9dD592feB37965);
-    RendererStorage public rendererStorage =
-        RendererStorage(0x35c3bD81F7b3E2ddCE70f2b9f2cA94aC9992EE23);
-    CrowdfundNFTRenderer public crowdfundNFTRenderer =
-        CrowdfundNFTRenderer(0xe99446935bc7EF76f68cb0250f0E3e1C72371fB4);
-    PartyNFTRenderer public partyNFTRenderer =
-        PartyNFTRenderer(0xeEf9Cd7a71d31054f794545308cf0503708B2980);
-    PartyHelpers public partyHelpers =
-        PartyHelpers(0xd86eD6b7EBEe2B0924ba6FFe57B552c88f20c888);
-    IGateKeeper public allowListGateKeeper =
-        IGateKeeper(0xADcec7b4Db7969DFf00b9e5304be8e0d1261d6B4);
-    IGateKeeper public tokenGateKeeper =
-        IGateKeeper(0xa6FbcE9898A34a1e6db5Dab699B20b6bfEfda8c3);
-    FoundationMarketWrapper public foundationMarketWrapper =
-        FoundationMarketWrapper(0xc1bb865106E3c86B1804FfAaC7795F82c93c8ceF);
-    NounsMarketWrapper public nounsMarketWrapper =
-        NounsMarketWrapper(0x8633B1f69DA83067AB1Ec85a3411DE354fBF96cD);
-    ZoraMarketWrapper public zoraMarketWrapper =
-        ZoraMarketWrapper(0x969Ee9Ea5cebc042b689bff8e5497F96808353AE);
-    PixeldroidConsoleFont public pixeldroidConsoleFont =
-        PixeldroidConsoleFont(0x2262595460B14a91Cc8c175A8a6304637ef28669);
 
-    function deploy(LibDeployConstants.DeployConstants memory deployConstants)
-        public
-        virtual
-    {
+    function deploy(
+        LibDeployConstants.DeployConstants memory deployConstants
+    ) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_AUCTION_CF_IMPLEMENTATION
@@ -92,11 +62,11 @@ abstract contract Deploy {
         console.log("### AuctionCrowdfund crowdfund implementation");
         console.log("  Deploying - AuctionCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
-        auctionCrowdfundImpl = new AuctionCrowdfund(globals);
+        auctionCrowdfund = new AuctionCrowdfund(globals);
         _trackDeployerGasAfter();
         console.log(
             "  Deployed - AuctionCrowdfund crowdfund implementation",
-            address(auctionCrowdfundImpl)
+            address(auctionCrowdfund)
         );
 
         // DEPLOY_BUY_CF_IMPLEMENTATION
@@ -104,11 +74,11 @@ abstract contract Deploy {
         console.log("### BuyCrowdfund crowdfund implementation");
         console.log("  Deploying - BuyCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
-        buyCrowdfundImpl = new BuyCrowdfund(globals);
+        buyCrowdfund = new BuyCrowdfund(globals);
         _trackDeployerGasAfter();
         console.log(
             "  Deployed - BuyCrowdfund crowdfund implementation",
-            address(buyCrowdfundImpl)
+            address(buyCrowdfund)
         );
 
         // DEPLOY_COLLECTION_BUY_CF_IMPLEMENTATION
@@ -118,11 +88,11 @@ abstract contract Deploy {
             "  Deploying - CollectionBuyCrowdfund crowdfund implementation"
         );
         _trackDeployerGasBefore();
-        collectionBuyCrowdfundImpl = new CollectionBuyCrowdfund(globals);
+        collectionBuyCrowdfund = new CollectionBuyCrowdfund(globals);
         _trackDeployerGasAfter();
         console.log(
             "  Deployed - CollectionBuyCrowdfund crowdfund implementation",
-            address(collectionBuyCrowdfundImpl)
+            address(collectionBuyCrowdfund)
         );
 
         console.log("");
@@ -131,11 +101,11 @@ abstract contract Deploy {
         );
         globals.setAddress(
             LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL,
-            address(collectionBuyCrowdfundImpl)
+            address(collectionBuyCrowdfund)
         );
         console.log(
             "  Globals - successfully set CollectionBuyCrowdfund crowdfund implementation address",
-            address(collectionBuyCrowdfundImpl)
+            address(collectionBuyCrowdfund)
         );
 
         // DEPLOY_COLLECTION_BATCH_BUY_CF_IMPLEMENTATION
@@ -145,13 +115,11 @@ abstract contract Deploy {
             "  Deploying - CollectionBatchBuyCrowdfund crowdfund implementation"
         );
         _trackDeployerGasBefore();
-        collectionBatchBuyCrowdfundImpl = new CollectionBatchBuyCrowdfund(
-            globals
-        );
+        collectionBatchBuyCrowdfund = new CollectionBatchBuyCrowdfund(globals);
         _trackDeployerGasAfter();
         console.log(
             "  Deployed - CollectionBatchBuyCrowdfund crowdfund implementation",
-            address(collectionBatchBuyCrowdfundImpl)
+            address(collectionBatchBuyCrowdfund)
         );
 
         console.log("");
@@ -160,11 +128,11 @@ abstract contract Deploy {
         );
         globals.setAddress(
             LibGlobals.GLOBAL_COLLECTION_BATCH_BUY_CF_IMPL,
-            address(collectionBatchBuyCrowdfundImpl)
+            address(collectionBatchBuyCrowdfund)
         );
         console.log(
             "  Globals - successfully set CollectionBatchBuyCrowdfund crowdfund implementation address",
-            address(collectionBatchBuyCrowdfundImpl)
+            address(collectionBatchBuyCrowdfund)
         );
 
         // DEPLOY_ROLLING_AUCTION_CF_IMPLEMENTATION
@@ -173,10 +141,10 @@ abstract contract Deploy {
         console.log(
             "  Deploying - RollingAuctionCrowdfund crowdfund implementation"
         );
-        rollingAuctionCrowdfundImpl = new RollingAuctionCrowdfund(globals);
+        rollingAuctionCrowdfund = new RollingAuctionCrowdfund(globals);
         console.log(
             "  Deployed - RollingAuctionCrowdfund crowdfund implementation",
-            address(rollingAuctionCrowdfundImpl)
+            address(rollingAuctionCrowdfund)
         );
 
         console.log("");
@@ -185,23 +153,21 @@ abstract contract Deploy {
         );
         globals.setAddress(
             LibGlobals.GLOBAL_ROLLING_AUCTION_CF_IMPL,
-            address(rollingAuctionCrowdfundImpl)
+            address(rollingAuctionCrowdfund)
         );
         console.log(
             "  Globals - successfully set RollingAuctionCrowdfund crowdfund implementation address",
-            address(rollingAuctionCrowdfundImpl)
+            address(rollingAuctionCrowdfund)
         );
 
         // DEPLOY_PARTY_CROWDFUND_FACTORY
         console.log("");
         console.log("### CrowdfundFactory");
         console.log("  Deploying - CrowdfundFactory");
-        _switchDeployer(DeployerRole.CrowdfundFactory);
         _trackDeployerGasBefore();
         crowdfundFactory = new CrowdfundFactory(globals);
         _trackDeployerGasAfter();
         console.log("  Deployed - CrowdfundFactory", address(crowdfundFactory));
-        _switchDeployer(DeployerRole.Default);
 
         // Set Global values and transfer ownership
         {
@@ -210,34 +176,31 @@ abstract contract Deploy {
             uint256 n = 0;
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_AUCTION_CF_IMPL,
-                    address(auctionCrowdfundImpl)
-                )
+                (LibGlobals.GLOBAL_AUCTION_CF_IMPL, address(auctionCrowdfund))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (LibGlobals.GLOBAL_BUY_CF_IMPL, address(buyCrowdfundImpl))
+                (LibGlobals.GLOBAL_BUY_CF_IMPL, address(buyCrowdfund))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
                 (
                     LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL,
-                    address(collectionBuyCrowdfundImpl)
+                    address(collectionBuyCrowdfund)
                 )
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
                 (
                     LibGlobals.GLOBAL_COLLECTION_BATCH_BUY_CF_IMPL,
-                    address(collectionBatchBuyCrowdfundImpl)
+                    address(collectionBatchBuyCrowdfund)
                 )
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
                 (
                     LibGlobals.GLOBAL_ROLLING_AUCTION_CF_IMPL,
-                    address(rollingAuctionCrowdfundImpl)
+                    address(rollingAuctionCrowdfund)
                 )
             );
             assembly {
@@ -257,11 +220,9 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(address deployer)
-        internal
-        view
-        returns (uint256)
-    {
+    function _getDeployerGasUsage(
+        address deployer
+    ) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -338,79 +299,36 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(LibDeployConstants.DeployConstants memory deployConstants)
-        public
-        override
-    {
+    function deploy(
+        LibDeployConstants.DeployConstants memory deployConstants
+    ) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](18);
-        addressMapping[0] = AddressMapping("Globals", address(globals));
+        AddressMapping[] memory addressMapping = new AddressMapping[](6);
+        addressMapping[0] = AddressMapping(
+            "AuctionCrowdfund",
+            address(auctionCrowdfund)
+        );
         addressMapping[1] = AddressMapping(
-            "TokenDistributor",
-            address(tokenDistributor)
+            "RollingAuctionCrowdfund",
+            address(rollingAuctionCrowdfund)
         );
         addressMapping[2] = AddressMapping(
-            "ProposalExecutionEngine",
-            address(proposalEngineImpl)
+            "BuyCrowdfund",
+            address(buyCrowdfund)
         );
-        addressMapping[3] = AddressMapping("Party", address(partyImpl));
+        addressMapping[3] = AddressMapping(
+            "CollectionBuyCrowdfund",
+            address(collectionBuyCrowdfund)
+        );
         addressMapping[4] = AddressMapping(
-            "PartyFactory",
-            address(partyFactory)
+            "CollectionBatchBuyCrowdfund",
+            address(collectionBatchBuyCrowdfund)
         );
         addressMapping[5] = AddressMapping(
-            "AuctionCrowdfund",
-            address(auctionCrowdfundImpl)
-        );
-        addressMapping[6] = AddressMapping(
-            "RollingAuctionCrowdfund",
-            address(rollingAuctionCrowdfundImpl)
-        );
-        addressMapping[7] = AddressMapping(
-            "BuyCrowdfund",
-            address(buyCrowdfundImpl)
-        );
-        addressMapping[8] = AddressMapping(
-            "CollectionBuyCrowdfund",
-            address(collectionBuyCrowdfundImpl)
-        );
-        addressMapping[9] = AddressMapping(
-            "CollectionBatchBuyCrowdfund",
-            address(collectionBatchBuyCrowdfundImpl)
-        );
-        addressMapping[10] = AddressMapping(
             "CrowdfundFactory",
             address(crowdfundFactory)
-        );
-        addressMapping[11] = AddressMapping(
-            "CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
-        addressMapping[12] = AddressMapping(
-            "PartyNFTRenderer",
-            address(partyNFTRenderer)
-        );
-        addressMapping[13] = AddressMapping(
-            "PartyHelpers",
-            address(partyHelpers)
-        );
-        addressMapping[14] = AddressMapping(
-            "AllowListGateKeeper",
-            address(allowListGateKeeper)
-        );
-        addressMapping[15] = AddressMapping(
-            "TokenGateKeeper",
-            address(tokenGateKeeper)
-        );
-        addressMapping[16] = AddressMapping(
-            "RendererStorage",
-            address(rendererStorage)
-        );
-        addressMapping[17] = AddressMapping(
-            "PixeldroidConsoleFont",
-            address(pixeldroidConsoleFont)
         );
 
         console.log("");
@@ -424,11 +342,9 @@ contract DeployScript is Script, Deploy {
         console.log("Ending deploy script.");
     }
 
-    function generateJSONString(AddressMapping[] memory parts)
-        private
-        pure
-        returns (string memory)
-    {
+    function generateJSONString(
+        AddressMapping[] memory parts
+    ) private pure returns (string memory) {
         string memory vals = "";
         for (uint256 i; i < parts.length; ++i) {
             string memory newValue = string.concat(
