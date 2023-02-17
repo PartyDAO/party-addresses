@@ -176,32 +176,32 @@ abstract contract Deploy {
             uint256 n = 0;
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (LibGlobals.GLOBAL_AUCTION_CF_IMPL, address(auctionCrowdfund))
+                (
+                    LibGlobals.GLOBAL_AUCTION_CF_IMPL,
+                    address(0xe0A0fcc467196Fda0A6cBDBbA73505aed1E31B31)
+                )
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (LibGlobals.GLOBAL_BUY_CF_IMPL, address(buyCrowdfund))
+                (
+                    LibGlobals.GLOBAL_BUY_CF_IMPL,
+                    address(0x1471Fe2985810525f29412dc555c5A911403D144)
+                )
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
                 (
                     LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL,
-                    address(collectionBuyCrowdfund)
+                    address(0x0d5a70D1a340C737B74162A60fFCa0F94a4C9699)
                 )
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_COLLECTION_BATCH_BUY_CF_IMPL,
-                    address(collectionBatchBuyCrowdfund)
-                )
+                (LibGlobals.GLOBAL_COLLECTION_BATCH_BUY_CF_IMPL, address(0))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_ROLLING_AUCTION_CF_IMPL,
-                    address(rollingAuctionCrowdfund)
-                )
+                (LibGlobals.GLOBAL_ROLLING_AUCTION_CF_IMPL, address(0))
             );
             assembly {
                 mstore(multicallData, n)
