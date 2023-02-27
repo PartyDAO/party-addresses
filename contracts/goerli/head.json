@@ -10,11 +10,13 @@
   "CollectionBuyCrowdfund": "crowdfunds_plus",
   "CollectionBatchBuyCrowdfund": "crowdfunds_plus",
   "CrowdfundFactory": "crowdfunds_plus",
-  "CrowdfundNFTRenderer": "genesis",
+  "CrowdfundNFTRenderer": "allstarz_renderer",
   "PartyGovernanceNFT": "genesis",
   "PartyHelpers": "genesis",
   "AllowListGateKeeper": "genesis",
   "TokenGateKeeper": "genesis",
   "RendererStorage": "genesis",
-  "PixeldroidConsoleFont": "genesis"
+  "PixeldroidConsoleFont": "genesis",
+  "PartyNFTRenderer": "allstarz_renderer",
+  "MetadataRegistry": "allstarz_renderer"
 }
