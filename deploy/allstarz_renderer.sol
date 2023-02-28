@@ -44,12 +44,9 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals =
-        Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
-    PixeldroidConsoleFont public pixeldroidConsoleFont =
-        PixeldroidConsoleFont(0x144537588c3bDA1fD5A7D7Ffdcd5e0AD0c0dc0d2);
-    RendererStorage public rendererStorage =
-        RendererStorage(0x35c3bD81F7b3E2ddCE70f2b9f2cA94aC9992EE23);
+    Globals public globals;
+    PixeldroidConsoleFont public pixeldroidConsoleFont;
+    RendererStorage public rendererStorage;
 
     CrowdfundNFTRenderer public crowdfundNFTRenderer;
     PartyNFTRenderer public partyNFTRenderer;
@@ -91,10 +88,11 @@ abstract contract Deploy {
         console.log("  Deployed - PartyNFTRenderer", address(partyNFTRenderer));
 
         // DEPLOY_METADATA_REGISTRY
-        address[] memory allowedHosts = new address[](3);
+        address[] memory allowedHosts = new address[](4);
         allowedHosts[0] = 0xd66018102d639165ec15f7D0305f276835D955cE;
         allowedHosts[1] = 0x678e8bd1D8845399c8e3C1F946CB4309014456a5;
         allowedHosts[2] = 0x833b5e466f8b0ac36275938D5938AE146E9065B7;
+        allowedHosts[3] = 0xba5f2ffb721648Ee6a6c51c512A258ec62f1D6af;
 
         console.log("");
         console.log("### MetadataRegistry");
