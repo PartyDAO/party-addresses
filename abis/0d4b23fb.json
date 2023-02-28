@@ -1,0 +1,440 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "contract IGlobals",
+        "name": "globals",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_allowedHosts",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "CannotSetMetadataForCrowdfundWithContributionsError",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "hostIndex",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address[]",
+        "name": "hosts",
+        "type": "address[]"
+      }
+    ],
+    "name": "HostNotFoundError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidCrowdfundError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidGovernanceOptionsError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "OnlyAllowedHostsError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "OnlyMultisigError",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "AllowAnyHostEnabled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "host",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "AllowedHostSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract Crowdfund",
+        "name": "crowdfund",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "banner",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct CollectionMetadata",
+        "name": "metadata",
+        "type": "tuple"
+      }
+    ],
+    "name": "CustomPartyCollectionMetadataSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "contract Crowdfund",
+        "name": "crowdfund",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct TokenMetadata",
+        "name": "metadata",
+        "type": "tuple"
+      }
+    ],
+    "name": "CustomPartyMetadataSet",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "allowAnyHost",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "allowedHosts",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract Crowdfund",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "customPartyCollectionMetadataByCrowdfund",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "image",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "banner",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract Crowdfund",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "customPartyMetadataByCrowdfund",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "image",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "enableAllowAnyHost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "host",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "setAllowedHost",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract Crowdfund",
+        "name": "crowdfund",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address[]",
+            "name": "hosts",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint40",
+            "name": "voteDuration",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint40",
+            "name": "executionDelay",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint16",
+            "name": "passThresholdBps",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "feeBps",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address payable",
+            "name": "feeRecipient",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct Crowdfund.FixedGovernanceOpts",
+        "name": "governanceOpts",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "hostIndex",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "banner",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct CollectionMetadata",
+        "name": "metadata",
+        "type": "tuple"
+      }
+    ],
+    "name": "setCustomCollectionMetadata",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract Crowdfund",
+        "name": "crowdfund",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address[]",
+            "name": "hosts",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint40",
+            "name": "voteDuration",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint40",
+            "name": "executionDelay",
+            "type": "uint40"
+          },
+          {
+            "internalType": "uint16",
+            "name": "passThresholdBps",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "feeBps",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address payable",
+            "name": "feeRecipient",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct Crowdfund.FixedGovernanceOpts",
+        "name": "governanceOpts",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "hostIndex",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct TokenMetadata",
+        "name": "metadata",
+        "type": "tuple"
+      }
+    ],
+    "name": "setCustomMetadata",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
