@@ -1,7 +1,7 @@
 {
   "Globals": "genesis",
   "TokenDistributor": "genesis",
-  "ProposalExecutionEngine": "genesis",
+  "ProposalExecutionEngine": "seaport_1.4",
   "Party": "genesis",
   "PartyFactory": "genesis",
   "AuctionCrowdfund": "crowdfunds_plus",

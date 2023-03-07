@@ -18,7 +18,6 @@ import "../contracts/party/Party.sol";
 import "../contracts/party/PartyFactory.sol";
 import "../contracts/renderers/CrowdfundNFTRenderer.sol";
 import "../contracts/renderers/PartyNFTRenderer.sol";
-import "../contracts/renderers/MetadataRegistry.sol";
 import "../contracts/renderers/fonts/PixeldroidConsoleFont.sol";
 import "../contracts/proposals/ProposalExecutionEngine.sol";
 import "../contracts/utils/PartyHelpers.sol";
@@ -44,93 +43,51 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals;
-    PixeldroidConsoleFont public pixeldroidConsoleFont;
-    RendererStorage public rendererStorage;
-
-    CrowdfundNFTRenderer public crowdfundNFTRenderer;
-    PartyNFTRenderer public partyNFTRenderer;
-    MetadataRegistry public metadataRegistry;
+    Globals public globals =
+        Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
+    ProposalExecutionEngine public proposalExecutionEngine;
 
     function deploy(
         LibDeployConstants.DeployConstants memory deployConstants
     ) public virtual {
         _switchDeployer(DeployerRole.Default);
 
-        // DEPLOY_CROWDFUND_NFT_RENDERER
+        // DEPLOY_PROPOSAL_EXECUTION_ENGINE
         console.log("");
-        console.log("### CrowdfundNFTRenderer");
-        console.log("  Deploying - CrowdfundNFTRenderer");
+        console.log("### ProposalExecutionEngine");
+        console.log("  Deploying - ProposalExecutionEngine");
+        IZoraAuctionHouse zoraAuctionHouse = IZoraAuctionHouse(
+            deployConstants.zoraAuctionHouse
+        );
+        IOpenseaConduitController conduitController = IOpenseaConduitController(
+            deployConstants.osConduitController
+        );
+        IOpenseaExchange seaport = IOpenseaExchange(
+            deployConstants.seaportExchangeAddress
+        );
+        IFractionalV1VaultFactory fractionalVaultFactory = IFractionalV1VaultFactory(
+                deployConstants.fractionalVaultFactory
+            );
         _trackDeployerGasBefore();
-        crowdfundNFTRenderer = new CrowdfundNFTRenderer(
+        proposalExecutionEngine = new ProposalExecutionEngine(
             globals,
-            rendererStorage,
-            IFont(address(pixeldroidConsoleFont))
+            seaport,
+            conduitController,
+            zoraAuctionHouse,
+            fractionalVaultFactory
         );
         _trackDeployerGasAfter();
         console.log(
-            "  Deployed - CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
+            "  Deployed - ProposalExecutionEngine",
+            address(proposalExecutionEngine)
         );
 
-        // DEPLOY_PARTY_NFT_RENDERER
-        console.log("");
-        console.log("### PartyNFTRenderer");
-        console.log("  Deploying - PartyNFTRenderer");
-        _trackDeployerGasBefore();
-        partyNFTRenderer = new PartyNFTRenderer(
-            globals,
-            rendererStorage,
-            IFont(address(pixeldroidConsoleFont))
+        // Set Global values
+        console.log("### Configure Globals");
+        globals.setAddress(
+            LibGlobals.GLOBAL_PROPOSAL_ENGINE_IMPL,
+            address(proposalExecutionEngine)
         );
-        _trackDeployerGasAfter();
-        console.log("  Deployed - PartyNFTRenderer", address(partyNFTRenderer));
-
-        // DEPLOY_METADATA_REGISTRY
-        address[] memory allowedHosts = new address[](4);
-        allowedHosts[0] = 0xd66018102d639165ec15f7D0305f276835D955cE;
-        allowedHosts[1] = 0x678e8bd1D8845399c8e3C1F946CB4309014456a5;
-        allowedHosts[2] = 0x833b5e466f8b0ac36275938D5938AE146E9065B7;
-        allowedHosts[3] = 0xba5f2ffb721648Ee6a6c51c512A258ec62f1D6af;
-
-        console.log("");
-        console.log("### MetadataRegistry");
-        console.log("  Deploying - MetadataRegistry");
-        _trackDeployerGasBefore();
-        metadataRegistry = new MetadataRegistry(globals, allowedHosts);
-        _trackDeployerGasAfter();
-        console.log("  Deployed - MetadataRegistry", address(metadataRegistry));
-
-        // Set Global values and transfer ownership
-        {
-            console.log("### Configure Globals");
-            bytes[] memory multicallData = new bytes[](25);
-            uint256 n = 0;
-            multicallData[n++] = abi.encodeCall(
-                globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_CF_NFT_RENDER_IMPL,
-                    address(crowdfundNFTRenderer)
-                )
-            );
-            multicallData[n++] = abi.encodeCall(
-                globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL,
-                    address(partyNFTRenderer)
-                )
-            );
-            multicallData[n++] = abi.encodeCall(
-                globals.setAddress,
-                (LibGlobals.GLOBAL_METADATA_REGISTRY, address(metadataRegistry))
-            );
-            assembly {
-                mstore(multicallData, n)
-            }
-            _trackDeployerGasBefore();
-            globals.multicall(multicallData);
-            _trackDeployerGasAfter();
-        }
     }
 
     function getDeployer() external view returns (address) {
@@ -198,7 +155,6 @@ contract DeployScript is Script, Deploy {
     function _run() internal virtual {}
 
     function _switchDeployer(DeployerRole role) internal override {
-        vm.stopBroadcast();
         {
             address deployer_ = _deployerByRole[role];
             if (deployer_ != address(0)) {
@@ -226,18 +182,10 @@ contract DeployScript is Script, Deploy {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](3);
+        AddressMapping[] memory addressMapping = new AddressMapping[](1);
         addressMapping[0] = AddressMapping(
-            "CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
-        addressMapping[1] = AddressMapping(
-            "PartyNFTRenderer",
-            address(partyNFTRenderer)
-        );
-        addressMapping[2] = AddressMapping(
-            "MetadataRegistry",
-            address(metadataRegistry)
+            "ProposalExecutionEngine",
+            address(proposalExecutionEngine)
         );
 
         console.log("");
