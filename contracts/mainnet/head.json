@@ -1,6 +1,6 @@
 {
   "Globals": "genesis",
-  "TokenDistributor": "genesis",
+  "TokenDistributor": "eth_party",
   "ProposalExecutionEngine": "seaport_1.4",
   "Party": "genesis",
   "PartyFactory": "genesis",
