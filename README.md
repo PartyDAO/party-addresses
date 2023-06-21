@@ -1,4 +1,4 @@
-# Party Migrations
+# Party Addresses
 
 ```txt
 abis/
