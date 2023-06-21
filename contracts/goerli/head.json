@@ -11,7 +11,6 @@
   "CollectionBatchBuyCrowdfund": "eth_party",
   "CrowdfundFactory": "eth_party",
   "CrowdfundNFTRenderer": "eth_party",
-  "PartyGovernanceNFT": "genesis",
   "PartyHelpers": "eth_party",
   "AllowListGateKeeper": "genesis",
   "TokenGateKeeper": "genesis",
