@@ -1,7 +1,7 @@
 {
   "Globals": "genesis",
   "TokenDistributor": "eth_party",
-  "ProposalExecutionEngine": "eth_party",
+  "ProposalExecutionEngine": "1.2.1",
   "Party": "eth_party",
   "PartyFactory": "eth_party",
   "AuctionCrowdfund": "eth_party",
@@ -20,6 +20,6 @@
   "MetadataRegistry": "allstarz_renderer",
   "InitialETHCrowdfund": "eth_party",
   "ReraiseETHCrowdfund": "eth_party",
-  "CollectionBatchBuyOperator": "eth_party",
-  "ERC20SwapOperator": "erc20_swap_operator"
+  "CollectionBatchBuyOperator": "1.2.1",
+  "ERC20SwapOperator": "1.2.1"
 }
