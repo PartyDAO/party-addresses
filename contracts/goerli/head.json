@@ -20,5 +20,6 @@
   "MetadataRegistry": "allstarz_renderer",
   "InitialETHCrowdfund": "eth_party",
   "ReraiseETHCrowdfund": "eth_party",
-  "CollectionBatchBuyOperator": "eth_party"
+  "CollectionBatchBuyOperator": "eth_party",
+  "ERC20SwapOperator": "erc20_swap_operator"
 }
