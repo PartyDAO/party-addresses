@@ -52,9 +52,7 @@ abstract contract Deploy {
     PartyNFTRenderer public partyNFTRenderer;
     MetadataRegistry public metadataRegistry;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_CROWDFUND_NFT_RENDERER
@@ -68,10 +66,7 @@ abstract contract Deploy {
             IFont(address(pixeldroidConsoleFont))
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
+        console.log("  Deployed - CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
 
         // DEPLOY_PARTY_NFT_RENDERER
         console.log("");
@@ -108,17 +103,11 @@ abstract contract Deploy {
             uint256 n = 0;
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_CF_NFT_RENDER_IMPL,
-                    address(crowdfundNFTRenderer)
-                )
+                (LibGlobals.GLOBAL_CF_NFT_RENDER_IMPL, address(crowdfundNFTRenderer))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL,
-                    address(partyNFTRenderer)
-                )
+                (LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL, address(partyNFTRenderer))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -141,9 +130,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -163,8 +150,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -220,25 +206,14 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
         AddressMapping[] memory addressMapping = new AddressMapping[](3);
-        addressMapping[0] = AddressMapping(
-            "CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
-        addressMapping[1] = AddressMapping(
-            "PartyNFTRenderer",
-            address(partyNFTRenderer)
-        );
-        addressMapping[2] = AddressMapping(
-            "MetadataRegistry",
-            address(metadataRegistry)
-        );
+        addressMapping[0] = AddressMapping("CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
+        addressMapping[1] = AddressMapping("PartyNFTRenderer", address(partyNFTRenderer));
+        addressMapping[2] = AddressMapping("MetadataRegistry", address(metadataRegistry));
 
         console.log("");
         console.log("### Deployed addresses");
@@ -285,10 +260,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/utils/save-json.js";

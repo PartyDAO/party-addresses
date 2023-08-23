@@ -51,9 +51,7 @@ abstract contract Deploy {
     CollectionBatchBuyCrowdfund public collectionBatchBuyCrowdfund;
     CrowdfundFactory public crowdfundFactory;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_AUCTION_CF_IMPLEMENTATION
@@ -75,17 +73,12 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         buyCrowdfund = new BuyCrowdfund(globals);
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - BuyCrowdfund crowdfund implementation",
-            address(buyCrowdfund)
-        );
+        console.log("  Deployed - BuyCrowdfund crowdfund implementation", address(buyCrowdfund));
 
         // DEPLOY_COLLECTION_BUY_CF_IMPLEMENTATION
         console.log("");
         console.log("### CollectionBuyCrowdfund crowdfund implementation");
-        console.log(
-            "  Deploying - CollectionBuyCrowdfund crowdfund implementation"
-        );
+        console.log("  Deploying - CollectionBuyCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
         collectionBuyCrowdfund = new CollectionBuyCrowdfund(globals);
         _trackDeployerGasAfter();
@@ -95,9 +88,7 @@ abstract contract Deploy {
         );
 
         console.log("");
-        console.log(
-            "  Globals - setting CollectionBuyCrowdfund crowdfund implementation address"
-        );
+        console.log("  Globals - setting CollectionBuyCrowdfund crowdfund implementation address");
         globals.setAddress(
             LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL,
             address(collectionBuyCrowdfund)
@@ -110,9 +101,7 @@ abstract contract Deploy {
         // DEPLOY_COLLECTION_BATCH_BUY_CF_IMPLEMENTATION
         console.log("");
         console.log("### CollectionBatchBuyCrowdfund crowdfund implementation");
-        console.log(
-            "  Deploying - CollectionBatchBuyCrowdfund crowdfund implementation"
-        );
+        console.log("  Deploying - CollectionBatchBuyCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
         collectionBatchBuyCrowdfund = new CollectionBatchBuyCrowdfund(globals);
         _trackDeployerGasAfter();
@@ -137,9 +126,7 @@ abstract contract Deploy {
         // DEPLOY_ROLLING_AUCTION_CF_IMPLEMENTATION
         console.log("");
         console.log("### RollingAuctionCrowdfund crowdfund implementation");
-        console.log(
-            "  Deploying - RollingAuctionCrowdfund crowdfund implementation"
-        );
+        console.log("  Deploying - RollingAuctionCrowdfund crowdfund implementation");
         rollingAuctionCrowdfund = new RollingAuctionCrowdfund(globals);
         console.log(
             "  Deployed - RollingAuctionCrowdfund crowdfund implementation",
@@ -147,9 +134,7 @@ abstract contract Deploy {
         );
 
         console.log("");
-        console.log(
-            "  Globals - setting RollingAuctionCrowdfund crowdfund implementation address"
-        );
+        console.log("  Globals - setting RollingAuctionCrowdfund crowdfund implementation address");
         globals.setAddress(
             LibGlobals.GLOBAL_ROLLING_AUCTION_CF_IMPL,
             address(rollingAuctionCrowdfund)
@@ -182,10 +167,7 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_BUY_CF_IMPL,
-                    address(0x1471Fe2985810525f29412dc555c5A911403D144)
-                )
+                (LibGlobals.GLOBAL_BUY_CF_IMPL, address(0x1471Fe2985810525f29412dc555c5A911403D144))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -219,9 +201,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -241,8 +221,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -298,25 +277,17 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
         AddressMapping[] memory addressMapping = new AddressMapping[](6);
-        addressMapping[0] = AddressMapping(
-            "AuctionCrowdfund",
-            address(auctionCrowdfund)
-        );
+        addressMapping[0] = AddressMapping("AuctionCrowdfund", address(auctionCrowdfund));
         addressMapping[1] = AddressMapping(
             "RollingAuctionCrowdfund",
             address(rollingAuctionCrowdfund)
         );
-        addressMapping[2] = AddressMapping(
-            "BuyCrowdfund",
-            address(buyCrowdfund)
-        );
+        addressMapping[2] = AddressMapping("BuyCrowdfund", address(buyCrowdfund));
         addressMapping[3] = AddressMapping(
             "CollectionBuyCrowdfund",
             address(collectionBuyCrowdfund)
@@ -325,10 +296,7 @@ contract DeployScript is Script, Deploy {
             "CollectionBatchBuyCrowdfund",
             address(collectionBatchBuyCrowdfund)
         );
-        addressMapping[5] = AddressMapping(
-            "CrowdfundFactory",
-            address(crowdfundFactory)
-        );
+        addressMapping[5] = AddressMapping("CrowdfundFactory", address(crowdfundFactory));
 
         console.log("");
         console.log("### Deployed addresses");
@@ -375,10 +343,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/utils/save-json.js";

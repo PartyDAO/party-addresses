@@ -46,15 +46,12 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals =
-        Globals(0x1cA20040cE6aD406bC2A6c89976388829E7fbAde);
+    Globals public globals = Globals(0x1cA20040cE6aD406bC2A6c89976388829E7fbAde);
     ProposalExecutionEngine public proposalExecutionEngine;
     CollectionBatchBuyOperator public collectionBatchBuyOperator;
     ERC20SwapOperator public swapOperator;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_PROPOSAL_EXECUTION_ENGINE
@@ -65,8 +62,8 @@ abstract contract Deploy {
             deployConstants.zoraReserveAuctionCoreEth
         );
         IFractionalV1VaultFactory fractionalVaultFactory = IFractionalV1VaultFactory(
-                deployConstants.fractionalVaultFactory
-            );
+            deployConstants.fractionalVaultFactory
+        );
         _trackDeployerGasBefore();
         proposalExecutionEngine = new ProposalExecutionEngine(
             globals,
@@ -74,10 +71,7 @@ abstract contract Deploy {
             fractionalVaultFactory
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - ProposalExecutionEngine",
-            address(proposalExecutionEngine)
-        );
+        console.log("  Deployed - ProposalExecutionEngine", address(proposalExecutionEngine));
 
         // DEPLOY_BATCH_BUY_OPERATOR
         console.log("");
@@ -86,10 +80,7 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         collectionBatchBuyOperator = new CollectionBatchBuyOperator();
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - CollectionBatchBuyOperator",
-            address(collectionBatchBuyOperator)
-        );
+        console.log("  Deployed - CollectionBatchBuyOperator", address(collectionBatchBuyOperator));
 
         // DEPLOY_ERC20_SWAP_OPERATOR
         console.log("");
@@ -112,9 +103,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -134,8 +123,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -193,9 +181,7 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
@@ -208,10 +194,7 @@ contract DeployScript is Script, Deploy {
             "CollectionBatchBuyOperator",
             address(collectionBatchBuyOperator)
         );
-        addressMapping[2] = AddressMapping(
-            "ERC20SwapOperator",
-            address(swapOperator)
-        );
+        addressMapping[2] = AddressMapping("ERC20SwapOperator", address(swapOperator));
 
         console.log("");
         console.log("### Deployed addresses");
@@ -258,10 +241,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/save-json.js";

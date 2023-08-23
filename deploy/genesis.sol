@@ -64,9 +64,7 @@ abstract contract Deploy {
     ZoraMarketWrapper public zoraMarketWrapper;
     PixeldroidConsoleFont public pixeldroidConsoleFont;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         seaport = IOpenseaExchange(deployConstants.seaportExchangeAddress);
@@ -86,8 +84,7 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         tokenDistributor = new TokenDistributor(
             globals,
-            uint40(block.timestamp) +
-                deployConstants.distributorEmergencyActionAllowedDuration
+            uint40(block.timestamp) + deployConstants.distributorEmergencyActionAllowedDuration
         );
         _trackDeployerGasAfter();
         console.log("  Deployed - TokenDistributor", address(tokenDistributor));
@@ -102,8 +99,8 @@ abstract contract Deploy {
             deployConstants.osConduitController
         );
         IFractionalV1VaultFactory fractionalVaultFactory = IFractionalV1VaultFactory(
-                deployConstants.fractionalVaultFactory
-            );
+            deployConstants.fractionalVaultFactory
+        );
         _trackDeployerGasBefore();
         proposalEngineImpl = new ProposalExecutionEngine(
             globals,
@@ -113,10 +110,7 @@ abstract contract Deploy {
             fractionalVaultFactory
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - ProposalExecutionEngine",
-            address(proposalEngineImpl)
-        );
+        console.log("  Deployed - ProposalExecutionEngine", address(proposalEngineImpl));
 
         // DEPLOY_PARTY_IMPLEMENTATION
         console.log("");
@@ -165,9 +159,7 @@ abstract contract Deploy {
         // DEPLOY_COLLECTION_BUY_CF_IMPLEMENTATION
         console.log("");
         console.log("### CollectionBuyCrowdfund crowdfund implementation");
-        console.log(
-            "  Deploying - CollectionBuyCrowdfund crowdfund implementation"
-        );
+        console.log("  Deploying - CollectionBuyCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
         collectionBuyCrowdfundImpl = new CollectionBuyCrowdfund(globals);
         _trackDeployerGasAfter();
@@ -215,10 +207,7 @@ abstract contract Deploy {
                 );
                 multicallData[i * 2 + 1] = abi.encodeCall(
                     rendererStorage.createCustomizationPreset,
-                    (
-                        i + 1 + numOfColors,
-                        abi.encode(versionId, true, RendererBase.Color(i))
-                    )
+                    (i + 1 + numOfColors, abi.encode(versionId, true, RendererBase.Color(i)))
                 );
             }
             _trackDeployerGasBefore();
@@ -233,10 +222,7 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         pixeldroidConsoleFont = new PixeldroidConsoleFont();
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - PixeldroidConsoleFont",
-            address(pixeldroidConsoleFont)
-        );
+        console.log("  Deployed - PixeldroidConsoleFont", address(pixeldroidConsoleFont));
 
         // DEPLOY_CROWDFUND_NFT_RENDERER
         console.log("");
@@ -249,10 +235,7 @@ abstract contract Deploy {
             IFont(address(pixeldroidConsoleFont))
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
+        console.log("  Deployed - CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
 
         // DEPLOY_PARTY_NFT_RENDERER
         console.log("");
@@ -285,28 +268,17 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         allowListGateKeeper = new AllowListGateKeeper();
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - AllowListGateKeeper",
-            address(allowListGateKeeper)
-        );
+        console.log("  Deployed - AllowListGateKeeper", address(allowListGateKeeper));
 
         // DEPLOY_MARKET_WRAPPERS
         console.log("");
         console.log("### MarketWrappers");
-        if (
-            address(deployConstants.deployedFoundationMarketWrapper) ==
-            address(0)
-        ) {
+        if (address(deployConstants.deployedFoundationMarketWrapper) == address(0)) {
             console.log("  Deploying - FoundationMarketWrapper");
             _trackDeployerGasBefore();
-            foundationMarketWrapper = new FoundationMarketWrapper(
-                deployConstants.foundationMarket
-            );
+            foundationMarketWrapper = new FoundationMarketWrapper(deployConstants.foundationMarket);
             _trackDeployerGasAfter();
-            console.log(
-                "  Deployed - FoundationMarketWrapper",
-                address(foundationMarketWrapper)
-            );
+            console.log("  Deployed - FoundationMarketWrapper", address(foundationMarketWrapper));
         } else {
             foundationMarketWrapper = FoundationMarketWrapper(
                 deployConstants.deployedFoundationMarketWrapper
@@ -315,34 +287,20 @@ abstract contract Deploy {
         if (address(deployConstants.deployedNounsMarketWrapper) == address(0)) {
             console.log("  Deploying - NounsMarketWrapper");
             _trackDeployerGasBefore();
-            nounsMarketWrapper = new NounsMarketWrapper(
-                deployConstants.nounsAuctionHouse
-            );
+            nounsMarketWrapper = new NounsMarketWrapper(deployConstants.nounsAuctionHouse);
             _trackDeployerGasAfter();
-            console.log(
-                "  Deployed - NounsMarketWrapper",
-                address(nounsMarketWrapper)
-            );
+            console.log("  Deployed - NounsMarketWrapper", address(nounsMarketWrapper));
         } else {
-            nounsMarketWrapper = NounsMarketWrapper(
-                deployConstants.deployedNounsMarketWrapper
-            );
+            nounsMarketWrapper = NounsMarketWrapper(deployConstants.deployedNounsMarketWrapper);
         }
         if (address(deployConstants.deployedZoraMarketWrapper) == address(0)) {
             console.log("  Deploying - ZoraMarketWrapper");
             _trackDeployerGasBefore();
-            zoraMarketWrapper = new ZoraMarketWrapper(
-                deployConstants.zoraAuctionHouse
-            );
+            zoraMarketWrapper = new ZoraMarketWrapper(deployConstants.zoraAuctionHouse);
             _trackDeployerGasAfter();
-            console.log(
-                "  Deployed - ZoraMarketWrapper",
-                address(zoraMarketWrapper)
-            );
+            console.log("  Deployed - ZoraMarketWrapper", address(zoraMarketWrapper));
         } else {
-            zoraMarketWrapper = ZoraMarketWrapper(
-                deployConstants.deployedZoraMarketWrapper
-            );
+            zoraMarketWrapper = ZoraMarketWrapper(deployConstants.deployedZoraMarketWrapper);
         }
 
         console.log("");
@@ -363,10 +321,7 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setBytes32,
-                (
-                    LibGlobals.GLOBAL_OPENSEA_CONDUIT_KEY,
-                    deployConstants.osConduitKey
-                )
+                (LibGlobals.GLOBAL_OPENSEA_CONDUIT_KEY, deployConstants.osConduitKey)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -378,31 +333,19 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_OS_ZORA_AUCTION_DURATION,
-                    deployConstants.osZoraAuctionDuration
-                )
+                (LibGlobals.GLOBAL_OS_ZORA_AUCTION_DURATION, deployConstants.osZoraAuctionDuration)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_OS_ZORA_AUCTION_TIMEOUT,
-                    deployConstants.osZoraAuctionTimeout
-                )
+                (LibGlobals.GLOBAL_OS_ZORA_AUCTION_TIMEOUT, deployConstants.osZoraAuctionTimeout)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_OS_MIN_ORDER_DURATION,
-                    deployConstants.osMinOrderDuration
-                )
+                (LibGlobals.GLOBAL_OS_MIN_ORDER_DURATION, deployConstants.osMinOrderDuration)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_OS_MAX_ORDER_DURATION,
-                    deployConstants.osMaxOrderDuration
-                )
+                (LibGlobals.GLOBAL_OS_MAX_ORDER_DURATION, deployConstants.osMaxOrderDuration)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
@@ -420,31 +363,19 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_ZORA_MAX_AUCTION_TIMEOUT,
-                    deployConstants.zoraMaxAuctionTimeout
-                )
+                (LibGlobals.GLOBAL_ZORA_MAX_AUCTION_TIMEOUT, deployConstants.zoraMaxAuctionTimeout)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_PROPOSAL_MIN_CANCEL_DURATION,
-                    deployConstants.minCancelDelay
-                )
+                (LibGlobals.GLOBAL_PROPOSAL_MIN_CANCEL_DURATION, deployConstants.minCancelDelay)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setUint256,
-                (
-                    LibGlobals.GLOBAL_PROPOSAL_MAX_CANCEL_DURATION,
-                    deployConstants.maxCancelDelay
-                )
+                (LibGlobals.GLOBAL_PROPOSAL_MAX_CANCEL_DURATION, deployConstants.maxCancelDelay)
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_PROPOSAL_ENGINE_IMPL,
-                    address(proposalEngineImpl)
-                )
+                (LibGlobals.GLOBAL_PROPOSAL_ENGINE_IMPL, address(proposalEngineImpl))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -456,10 +387,7 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_AUCTION_CF_IMPL,
-                    address(auctionCrowdfundImpl)
-                )
+                (LibGlobals.GLOBAL_AUCTION_CF_IMPL, address(auctionCrowdfundImpl))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -467,10 +395,7 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL,
-                    address(collectionBuyCrowdfundImpl)
-                )
+                (LibGlobals.GLOBAL_COLLECTION_BUY_CF_IMPL, address(collectionBuyCrowdfundImpl))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
@@ -478,17 +403,11 @@ abstract contract Deploy {
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_CF_NFT_RENDER_IMPL,
-                    address(crowdfundNFTRenderer)
-                )
+                (LibGlobals.GLOBAL_CF_NFT_RENDER_IMPL, address(crowdfundNFTRenderer))
             );
             multicallData[n++] = abi.encodeCall(
                 globals.setAddress,
-                (
-                    LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL,
-                    address(partyNFTRenderer)
-                )
+                (LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL, address(partyNFTRenderer))
             );
             // transfer ownership of Globals to multisig
             if (this.getDeployer() != deployConstants.partyDaoMultisig) {
@@ -522,9 +441,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -544,8 +461,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -601,67 +517,29 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
         AddressMapping[] memory addressMapping = new AddressMapping[](16);
         addressMapping[0] = AddressMapping("Globals", address(globals));
-        addressMapping[1] = AddressMapping(
-            "TokenDistributor",
-            address(tokenDistributor)
-        );
-        addressMapping[2] = AddressMapping(
-            "ProposalExecutionEngine",
-            address(proposalEngineImpl)
-        );
+        addressMapping[1] = AddressMapping("TokenDistributor", address(tokenDistributor));
+        addressMapping[2] = AddressMapping("ProposalExecutionEngine", address(proposalEngineImpl));
         addressMapping[3] = AddressMapping("Party", address(partyImpl));
-        addressMapping[4] = AddressMapping(
-            "PartyFactory",
-            address(partyFactory)
-        );
-        addressMapping[5] = AddressMapping(
-            "AuctionCrowdfund",
-            address(auctionCrowdfundImpl)
-        );
-        addressMapping[6] = AddressMapping(
-            "BuyCrowdfund",
-            address(buyCrowdfundImpl)
-        );
+        addressMapping[4] = AddressMapping("PartyFactory", address(partyFactory));
+        addressMapping[5] = AddressMapping("AuctionCrowdfund", address(auctionCrowdfundImpl));
+        addressMapping[6] = AddressMapping("BuyCrowdfund", address(buyCrowdfundImpl));
         addressMapping[7] = AddressMapping(
             "collectionBuyCrowdfundImpl",
             address(collectionBuyCrowdfundImpl)
         );
-        addressMapping[8] = AddressMapping(
-            "CrowdfundFactory",
-            address(crowdfundFactory)
-        );
-        addressMapping[9] = AddressMapping(
-            "CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
-        addressMapping[10] = AddressMapping(
-            "PartyNFTRenderer",
-            address(partyNFTRenderer)
-        );
-        addressMapping[11] = AddressMapping(
-            "PartyHelpers",
-            address(partyHelpers)
-        );
-        addressMapping[12] = AddressMapping(
-            "AllowListGateKeeper",
-            address(allowListGateKeeper)
-        );
-        addressMapping[13] = AddressMapping(
-            "TokenGateKeeper",
-            address(tokenGateKeeper)
-        );
-        addressMapping[14] = AddressMapping(
-            "RendererStorage",
-            address(rendererStorage)
-        );
+        addressMapping[8] = AddressMapping("CrowdfundFactory", address(crowdfundFactory));
+        addressMapping[9] = AddressMapping("CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
+        addressMapping[10] = AddressMapping("PartyNFTRenderer", address(partyNFTRenderer));
+        addressMapping[11] = AddressMapping("PartyHelpers", address(partyHelpers));
+        addressMapping[12] = AddressMapping("AllowListGateKeeper", address(allowListGateKeeper));
+        addressMapping[13] = AddressMapping("TokenGateKeeper", address(tokenGateKeeper));
+        addressMapping[14] = AddressMapping("RendererStorage", address(rendererStorage));
         addressMapping[15] = AddressMapping(
             "PixeldroidConsoleFont",
             address(pixeldroidConsoleFont)
@@ -712,10 +590,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/utils/save-json.js";

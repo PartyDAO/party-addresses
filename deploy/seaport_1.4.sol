@@ -43,31 +43,24 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals =
-        Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
+    Globals public globals = Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
     ProposalExecutionEngine public proposalExecutionEngine;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_PROPOSAL_EXECUTION_ENGINE
         console.log("");
         console.log("### ProposalExecutionEngine");
         console.log("  Deploying - ProposalExecutionEngine");
-        IZoraAuctionHouse zoraAuctionHouse = IZoraAuctionHouse(
-            deployConstants.zoraAuctionHouse
-        );
+        IZoraAuctionHouse zoraAuctionHouse = IZoraAuctionHouse(deployConstants.zoraAuctionHouse);
         IOpenseaConduitController conduitController = IOpenseaConduitController(
             deployConstants.osConduitController
         );
-        IOpenseaExchange seaport = IOpenseaExchange(
-            deployConstants.seaportExchangeAddress
-        );
+        IOpenseaExchange seaport = IOpenseaExchange(deployConstants.seaportExchangeAddress);
         IFractionalV1VaultFactory fractionalVaultFactory = IFractionalV1VaultFactory(
-                deployConstants.fractionalVaultFactory
-            );
+            deployConstants.fractionalVaultFactory
+        );
         _trackDeployerGasBefore();
         proposalExecutionEngine = new ProposalExecutionEngine(
             globals,
@@ -77,10 +70,7 @@ abstract contract Deploy {
             fractionalVaultFactory
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - ProposalExecutionEngine",
-            address(proposalExecutionEngine)
-        );
+        console.log("  Deployed - ProposalExecutionEngine", address(proposalExecutionEngine));
 
         // Set Global values
         console.log("### Configure Globals");
@@ -98,9 +88,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -120,8 +108,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -176,9 +163,7 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
@@ -233,10 +218,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/utils/save-json.js";

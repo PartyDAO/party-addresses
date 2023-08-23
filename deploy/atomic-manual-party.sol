@@ -30,7 +30,7 @@ import "../contracts/utils/PartyHelpers.sol";
 import "../contracts/market-wrapper/FoundationMarketWrapper.sol";
 import "../contracts/market-wrapper/NounsMarketWrapper.sol";
 import "./LibDeployConstants.sol";
-import {AtomicManualParty} from "../contracts/crowdfund/AtomicManualParty.sol";
+import { AtomicManualParty } from "../contracts/crowdfund/AtomicManualParty.sol";
 
 abstract contract Deploy {
     enum DeployerRole {
@@ -49,15 +49,11 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals =
-        Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
-    PartyFactory public partyFactory =
-        PartyFactory(0x83e63E8bAba6C6dcb9F3F4324bEfA72AD8f43e44);
+    Globals public globals = Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
+    PartyFactory public partyFactory = PartyFactory(0x83e63E8bAba6C6dcb9F3F4324bEfA72AD8f43e44);
     AtomicManualParty public atomicManualParty;
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_PartyFactory
@@ -67,10 +63,7 @@ abstract contract Deploy {
         _trackDeployerGasBefore();
         atomicManualParty = new AtomicManualParty(globals, partyFactory);
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - AtomicManualParty",
-            address(atomicManualParty)
-        );
+        console.log("  Deployed - AtomicManualParty", address(atomicManualParty));
     }
 
     function getDeployer() external view returns (address) {
@@ -81,9 +74,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -103,8 +94,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -162,17 +152,12 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
         AddressMapping[] memory addressMapping = new AddressMapping[](1);
-        addressMapping[0] = AddressMapping(
-            "AtomicManualParty",
-            address(atomicManualParty)
-        );
+        addressMapping[0] = AddressMapping("AtomicManualParty", address(atomicManualParty));
 
         console.log("");
         console.log("### Deployed addresses");
@@ -219,10 +204,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/save-json.js";

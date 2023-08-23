@@ -48,8 +48,7 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals =
-        Globals(0x1cA20040cE6aD406bC2A6c89976388829E7fbAde);
+    Globals public globals = Globals(0x1cA20040cE6aD406bC2A6c89976388829E7fbAde);
     PartyFactory public partyFactory;
     InitialETHCrowdfund public initialETHCrowdfund;
     CrowdfundFactory public crowdfundFactory;
@@ -62,17 +61,13 @@ abstract contract Deploy {
     PixeldroidConsoleFont public pixeldroidConsoleFont =
         PixeldroidConsoleFont(0x52010E220E5C8eF2217D86cfA58da51Da39e8ec4);
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public virtual {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
         // DEPLOY_INITIAL_ETH_CF_IMPLEMENTATION
         console.log("");
         console.log("### InitialETHCrowdfund crowdfund implementation");
-        console.log(
-            "  Deploying - InitialETHCrowdfund crowdfund implementation"
-        );
+        console.log("  Deploying - InitialETHCrowdfund crowdfund implementation");
         _trackDeployerGasBefore();
         initialETHCrowdfund = new InitialETHCrowdfund(globals);
         _trackDeployerGasAfter();
@@ -136,10 +131,7 @@ abstract contract Deploy {
             IFont(address(pixeldroidConsoleFont))
         );
         _trackDeployerGasAfter();
-        console.log(
-            "  Deployed - CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
+        console.log("  Deployed - CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
 
         // DEPLOY_PARTY_NFT_RENDERER
         console.log("");
@@ -241,9 +233,7 @@ abstract contract Deploy {
         return address(this) == this.getDeployer();
     }
 
-    function _getDeployerGasUsage(
-        address deployer
-    ) internal view returns (uint256) {
+    function _getDeployerGasUsage(address deployer) internal view returns (uint256) {
         return _deployerGasUsage[deployer];
     }
 
@@ -263,8 +253,7 @@ abstract contract Deploy {
 
 contract DeployFork is Deploy {
     function deployMainnetFork(address multisig) public {
-        LibDeployConstants.DeployConstants memory dc = LibDeployConstants
-            .mainnet();
+        LibDeployConstants.DeployConstants memory dc = LibDeployConstants.mainnet();
         dc.partyDaoMultisig = multisig;
         deploy(dc);
     }
@@ -322,41 +311,18 @@ contract DeployScript is Script, Deploy {
         }
     }
 
-    function deploy(
-        LibDeployConstants.DeployConstants memory deployConstants
-    ) public override {
+    function deploy(LibDeployConstants.DeployConstants memory deployConstants) public override {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
         AddressMapping[] memory addressMapping = new AddressMapping[](7);
-        addressMapping[0] = AddressMapping(
-            "MetadataRegistry",
-            address(metadataRegistry)
-        );
-        addressMapping[1] = AddressMapping(
-            "MetadataProvider",
-            address(metadataProvider)
-        );
-        addressMapping[2] = AddressMapping(
-            "CrowdfundNFTRenderer",
-            address(crowdfundNFTRenderer)
-        );
-        addressMapping[3] = AddressMapping(
-            "PartyNFTRenderer",
-            address(partyNFTRenderer)
-        );
-        addressMapping[4] = AddressMapping(
-            "PartyFactory",
-            address(partyFactory)
-        );
-        addressMapping[5] = AddressMapping(
-            "CrowdfundFactory",
-            address(crowdfundFactory)
-        );
-        addressMapping[6] = AddressMapping(
-            "InitialETHCrowdfund",
-            address(initialETHCrowdfund)
-        );
+        addressMapping[0] = AddressMapping("MetadataRegistry", address(metadataRegistry));
+        addressMapping[1] = AddressMapping("MetadataProvider", address(metadataProvider));
+        addressMapping[2] = AddressMapping("CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
+        addressMapping[3] = AddressMapping("PartyNFTRenderer", address(partyNFTRenderer));
+        addressMapping[4] = AddressMapping("PartyFactory", address(partyFactory));
+        addressMapping[5] = AddressMapping("CrowdfundFactory", address(crowdfundFactory));
+        addressMapping[6] = AddressMapping("InitialETHCrowdfund", address(initialETHCrowdfund));
 
         console.log("");
         console.log("### Deployed addresses");
@@ -403,10 +369,7 @@ contract DeployScript is Script, Deploy {
         console.log("Successfully wrote ABIS to files");
     }
 
-    function writeAddressesToFile(
-        string memory networkName,
-        string memory jsonRes
-    ) private {
+    function writeAddressesToFile(string memory networkName, string memory jsonRes) private {
         string[] memory ffiCmd = new string[](4);
         ffiCmd[0] = "node";
         ffiCmd[1] = "./js/save-json.js";
