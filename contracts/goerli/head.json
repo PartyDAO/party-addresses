@@ -23,5 +23,5 @@
   "ReraiseETHCrowdfund": "eth_party",
   "CollectionBatchBuyOperator": "1.2.1",
   "ERC20SwapOperator": "1.2.1",
-  "AtomicManualParty": "atomic_manual_party"
+  "AtomicManualParty": "manual_party"
 }
