@@ -49,8 +49,7 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    Globals public globals = Globals(0x753e22d4e112a4D8b07dF9C4C578b116E3B48792);
-    PartyFactory public partyFactory = PartyFactory(0x83e63E8bAba6C6dcb9F3F4324bEfA72AD8f43e44);
+    Globals public globals = Globals(0x1cA20040cE6aD406bC2A6c89976388829E7fbAde);
     AtomicManualParty public atomicManualParty;
 
     function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
@@ -61,7 +60,7 @@ abstract contract Deploy {
         console.log("### AtomicManualParty");
         console.log("  Deploying - AtomicManualParty");
         _trackDeployerGasBefore();
-        atomicManualParty = new AtomicManualParty(globals, partyFactory);
+        atomicManualParty = new AtomicManualParty(globals);
         _trackDeployerGasAfter();
         console.log("  Deployed - AtomicManualParty", address(atomicManualParty));
     }

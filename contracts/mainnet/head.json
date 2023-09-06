@@ -21,5 +21,6 @@
   "InitialETHCrowdfund": "custom_token_renderer",
   "CollectionBatchBuyOperator": "1.2.1",
   "ERC20SwapOperator": "1.2.1",
-  "MetadataProvider": "custom_token_renderer"
+  "MetadataProvider": "custom_token_renderer",
+  "AtomicManualParty": "manual_party"
 }
