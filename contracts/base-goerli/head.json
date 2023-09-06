@@ -22,5 +22,6 @@
   "TokenGateKeeper": "custom_token_renderer",
   "RendererStorage": "custom_token_renderer",
   "PixeldroidConsoleFont": "custom_token_renderer",
-  "CollectionBatchBuyOperator": "custom_token_renderer"
+  "CollectionBatchBuyOperator": "custom_token_renderer",
+  "AtomicManualParty": "manual_party"
 }
