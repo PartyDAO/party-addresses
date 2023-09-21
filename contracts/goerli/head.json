@@ -12,8 +12,8 @@
   "CrowdfundFactory": "custom_token_renderer",
   "CrowdfundNFTRenderer": "custom_token_renderer",
   "PartyHelpers": "eth_party",
-  "AllowListGateKeeper": "genesis",
-  "TokenGateKeeper": "genesis",
+  "AllowListGateKeeper": "contribution_fee_router",
+  "TokenGateKeeper": "contribution_fee_router",
   "RendererStorage": "genesis",
   "PixeldroidConsoleFont": "genesis",
   "PartyNFTRenderer": "custom_token_renderer",
@@ -23,5 +23,6 @@
   "ReraiseETHCrowdfund": "eth_party",
   "CollectionBatchBuyOperator": "1.2.1",
   "ERC20SwapOperator": "1.2.1",
-  "AtomicManualParty": "manual_party"
+  "AtomicManualParty": "manual_party",
+  "ContributionRouter": "contribution_fee_router"
 }
