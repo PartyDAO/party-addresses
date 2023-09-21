@@ -18,10 +18,11 @@
   "CrowdfundNFTRenderer": "custom_token_renderer",
   "PartyNFTRenderer": "custom_token_renderer",
   "PartyHelpers": "custom_token_renderer",
-  "AllowListGateKeeper": "custom_token_renderer",
-  "TokenGateKeeper": "custom_token_renderer",
+  "AllowListGateKeeper": "contribution_fee_router",
+  "TokenGateKeeper": "contribution_fee_router",
   "RendererStorage": "custom_token_renderer",
   "PixeldroidConsoleFont": "custom_token_renderer",
   "CollectionBatchBuyOperator": "custom_token_renderer",
-  "AtomicManualParty": "manual_party"
+  "AtomicManualParty": "manual_party",
+  "ContributionRouter": "contribution_fee_router"
 }
