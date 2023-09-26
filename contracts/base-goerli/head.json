@@ -9,7 +9,7 @@
   "BuyCrowdfund": "custom_token_renderer",
   "CollectionBuyCrowdfund": "custom_token_renderer",
   "CollectionBatchBuyCrowdfund": "custom_token_renderer",
-  "InitialETHCrowdfund": "custom_token_renderer",
+  "InitialETHCrowdfund": "contribution_fee_router",
   "ReraiseETHCrowdfund": "custom_token_renderer",
   "ERC20SwapOperator": "custom_token_renderer",
   "CrowdfundFactory": "custom_token_renderer",
