@@ -18,7 +18,7 @@
   "PixeldroidConsoleFont": "genesis",
   "PartyNFTRenderer": "custom_token_renderer",
   "MetadataRegistry": "custom_token_renderer",
-  "InitialETHCrowdfund": "custom_token_renderer",
+  "InitialETHCrowdfund": "contribution_fee_router",
   "CollectionBatchBuyOperator": "1.2.1",
   "ERC20SwapOperator": "1.2.1",
   "MetadataProvider": "custom_token_renderer",
