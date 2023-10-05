@@ -2,7 +2,7 @@
   "Globals": "custom_token_renderer",
   "TokenDistributor": "custom_token_renderer",
   "ProposalExecutionEngine": "custom_token_renderer",
-  "Party": "custom_token_renderer",
+  "Party": "contribution_fee_router",
   "PartyFactory": "custom_token_renderer",
   "AuctionCrowdfund": "custom_token_renderer",
   "RollingAuctionCrowdfund": "custom_token_renderer",
