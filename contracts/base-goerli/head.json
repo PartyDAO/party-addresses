@@ -16,7 +16,7 @@
   "MetadataRegistry": "custom_token_renderer",
   "MetadataProvider": "custom_token_renderer",
   "CrowdfundNFTRenderer": "custom_token_renderer",
-  "PartyNFTRenderer": "custom_token_renderer",
+  "PartyNFTRenderer": "customize_external_urls",
   "PartyHelpers": "custom_token_renderer",
   "AllowListGateKeeper": "contribution_fee_router",
   "TokenGateKeeper": "contribution_fee_router",

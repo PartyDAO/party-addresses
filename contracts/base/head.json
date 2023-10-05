@@ -16,7 +16,7 @@
   "MetadataRegistry": "contribution_fee_router",
   "MetadataProvider": "contribution_fee_router",
   "CrowdfundNFTRenderer": "contribution_fee_router",
-  "PartyNFTRenderer": "contribution_fee_router",
+  "PartyNFTRenderer": "customize_external_urls",
   "PartyHelpers": "contribution_fee_router",
   "AllowListGateKeeper": "contribution_fee_router",
   "TokenGateKeeper": "contribution_fee_router",
