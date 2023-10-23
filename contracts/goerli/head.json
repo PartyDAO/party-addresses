@@ -24,5 +24,7 @@
   "CollectionBatchBuyOperator": "1.2.1",
   "ERC20SwapOperator": "1.2.1",
   "AtomicManualParty": "manual_party",
-  "ContributionRouter": "contribution_fee_router"
+  "ContributionRouter": "contribution_fee_router",
+  "BasicMetadataProvider": "efficient_providers",
+  "SSTORE2MetadataProvider": "efficient_providers"
 }
