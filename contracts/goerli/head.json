@@ -1,6 +1,6 @@
 {
   "Globals": "genesis",
-  "TokenDistributor": "eth_party",
+  "TokenDistributor": "add_party_cards",
   "ProposalExecutionEngine": "1.2.1",
   "Party": "eth_party",
   "PartyFactory": "custom_token_renderer",
@@ -27,5 +27,5 @@
   "ContributionRouter": "contribution_fee_router",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
-  "AddPartyCardsAuthority": "add-party-cards"
+  "AddPartyCardsAuthority": "add_party_cards"
 }

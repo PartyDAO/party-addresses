@@ -1,6 +1,6 @@
 {
   "Globals": "contribution_fee_router",
-  "TokenDistributor": "contribution_fee_router",
+  "TokenDistributor": "add_party_cards",
   "ProposalExecutionEngine": "contribution_fee_router",
   "Party": "contribution_fee_router",
   "PartyFactory": "contribution_fee_router",
@@ -27,5 +27,5 @@
   "ContributionRouter": "contribution_fee_router",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
-  "AddPartyCardsAuthority": "add-party-cards"
+  "AddPartyCardsAuthority": "add_party_cards"
 }

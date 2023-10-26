@@ -1,6 +1,6 @@
 {
   "Globals": "custom_token_renderer",
-  "TokenDistributor": "custom_token_renderer",
+  "TokenDistributor": "add_party_cards",
   "ProposalExecutionEngine": "custom_token_renderer",
   "Party": "contribution_fee_router",
   "PartyFactory": "custom_token_renderer",
@@ -27,5 +27,5 @@
   "ContributionRouter": "contribution_fee_router",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
-  "AddPartyCardsAuthority": "add-party-cards"
+  "AddPartyCardsAuthority": "add_party_cards"
 }
