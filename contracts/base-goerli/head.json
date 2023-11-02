@@ -27,5 +27,6 @@
   "ContributionRouter": "contribution_fee_router",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
-  "AddPartyCardsAuthority": "add_party_cards"
+  "AddPartyCardsAuthority": "add_party_cards",
+  "SellPartyCardsAuthority": "sell_memberships"
 }
