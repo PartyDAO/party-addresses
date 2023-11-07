@@ -53,9 +53,12 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
+    ContributionRouter public contributionRouter;
     SellPartyCardsAuthority public sellPartyCardsAuthority;
 
     function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
+        _switchDeployer(DeployerRole.Default);
+
         // DEPLOY_SELL_PARTY_CARDS_AUTHORITY
         console.log("");
         console.log("### SellPartyCardsAuthority");
@@ -64,6 +67,18 @@ abstract contract Deploy {
         sellPartyCardsAuthority = new SellPartyCardsAuthority();
         _trackDeployerGasAfter();
         console.log("  Deployed - SellPartyCardsAuthority", address(sellPartyCardsAuthority));
+
+        // Deploy CONTRIBUTION_ROUTER
+        console.log("");
+        console.log("### ContributionRouter");
+        console.log("  Deploying - ContributionRouter");
+        _trackDeployerGasBefore();
+        contributionRouter = new ContributionRouter(
+            deployConstants.partyDaoMultisig,
+            deployConstants.contributionRouterInitialFee
+        );
+        _trackDeployerGasAfter();
+        console.log("  Deployed - ContributionRouter", address(contributionRouter));
     }
 
     function getDeployer() external view returns (address) {
@@ -156,8 +171,9 @@ contract DeployScript is Script, Deploy {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](1);
-        addressMapping[0] = AddressMapping(
+        AddressMapping[] memory addressMapping = new AddressMapping[](2);
+        addressMapping[0] = AddressMapping("ContributionRouter", address(contributionRouter));
+        addressMapping[1] = AddressMapping(
             "SellPartyCardsAuthority",
             address(sellPartyCardsAuthority)
         );
