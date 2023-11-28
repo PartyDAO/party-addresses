@@ -24,8 +24,9 @@
   "PixeldroidConsoleFont": "contribution_fee_router",
   "ERC20SwapOperator": "contribution_fee_router",
   "AtomicManualParty": "contribution_fee_router",
-  "ContributionRouter": "contribution_fee_router",
+  "ContributionRouter": "sell_memberships",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
-  "AddPartyCardsAuthority": "add_party_cards"
+  "AddPartyCardsAuthority": "add_party_cards",
+  "SellPartyCardsAuthority": "sell_memberships"
 }
