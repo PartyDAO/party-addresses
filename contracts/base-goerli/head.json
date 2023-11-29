@@ -24,7 +24,7 @@
   "PixeldroidConsoleFont": "custom_token_renderer",
   "CollectionBatchBuyOperator": "custom_token_renderer",
   "AtomicManualParty": "manual_party",
-  "ContributionRouter": "contribution_fee_router",
+  "ContributionRouter": "sell_memberships",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
   "AddPartyCardsAuthority": "add_party_cards",
