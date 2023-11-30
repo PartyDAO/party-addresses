@@ -25,5 +25,6 @@
   "RendererStorage": "add_party_cards",
   "PixeldroidConsoleFont": "add_party_cards",
   "AtomicManualParty": "add_party_cards",
-  "ContributionRouter": "add_party_cards"
+  "ContributionRouter": "add_party_cards",
+  "SellPartyCardsAuthority": "add_party_cards"
 }
