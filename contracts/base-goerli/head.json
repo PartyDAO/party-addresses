@@ -29,5 +29,6 @@
   "SSTORE2MetadataProvider": "efficient_providers",
   "AddPartyCardsAuthority": "add_party_cards",
   "SellPartyCardsAuthority": "sell_memberships",
-  "OffChainSignatureValidator": "krunker_strike"
+  "OffChainSignatureValidator": "krunker_strike",
+  "BondingCurveAuthority": "bonding_curve"
 }
