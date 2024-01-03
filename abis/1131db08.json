@@ -1,0 +1,108 @@
+[
+  {
+    "type": "function",
+    "name": "isValidSignature",
+    "inputs": [
+      {
+        "name": "hash",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "signature",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setSigningThresholdBps",
+    "inputs": [
+      {
+        "name": "thresholdBps",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "signingThresholdBps",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "thresholdBps",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "SigningThresholdBpsSet",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "oldThresholdBps",
+        "type": "uint96",
+        "indexed": false,
+        "internalType": "uint96"
+      },
+      {
+        "name": "newThresholdBps",
+        "type": "uint96",
+        "indexed": false,
+        "internalType": "uint96"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "InsufficientVotingPower",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidBps",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidSignature",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MessageHashMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotMemberOfParty",
+    "inputs": []
+  }
+]

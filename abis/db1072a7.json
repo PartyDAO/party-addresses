@@ -1,0 +1,70 @@
+[
+  {
+    "type": "function",
+    "name": "addPartyCards",
+    "inputs": [
+      {
+        "name": "newPartyMembers",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "newPartyMemberVotingPowers",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      },
+      {
+        "name": "initialDelegates",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "PartyCardAdded",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "partyMember",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newIntrinsicVotingPower",
+        "type": "uint96",
+        "indexed": false,
+        "internalType": "uint96"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "ArityMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidPartyMember",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidPartyMemberVotingPower",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoPartyMembers",
+    "inputs": []
+  }
+]
