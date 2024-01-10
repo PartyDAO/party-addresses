@@ -57,8 +57,7 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasBefore;
     mapping(address => uint256) private _deployerGasUsage;
 
-    // temporary variables to store deployed contract addresses
-    Globals public globals;
+    Globals public globals; // REPLACE WITH CANONICAL ADDRESS IN PRODUCTION
     AuctionCrowdfund public auctionCrowdfund;
     RollingAuctionCrowdfund public rollingAuctionCrowdfund;
     BuyCrowdfund public buyCrowdfund;
@@ -71,8 +70,9 @@ abstract contract Deploy {
     OffChainSignatureValidator public offChainSignatureValidator;
     ProposalExecutionEngine public proposalExecutionEngine;
     CrowdfundNFTRenderer public crowdfundNFTRenderer;
-    PixeldroidConsoleFont public pixeldroidConsoleFont;
-    RendererStorage public rendererStorage;
+    AtomicManualParty public atomicManualParty;
+    PixeldroidConsoleFont public pixeldroidConsoleFont; // REPLACE WITH CANONICAL ADDRESS IN PRODUCTION
+    RendererStorage public rendererStorage; // REPLACE WITH CANONICAL ADDRESS IN PRODUCTION
 
     function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
@@ -216,6 +216,14 @@ abstract contract Deploy {
         _trackDeployerGasAfter();
         console.log("  Deployed - OffChainSignatureValidator", address(offChainSignatureValidator));
 
+        // DEPLOY_ATOMIC_MANUAL_PARTY
+        console.log("");
+        console.log("  Deploying - AtomicManualParty");
+        _trackDeployerGasBefore();
+        atomicManualParty = new AtomicManualParty(partyFactory);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - AtomicManualParty", address(atomicManualParty));
+
         // Set Global values and transfer ownership
         {
             console.log("### Configure Globals");
@@ -348,7 +356,7 @@ abstract contract Deploy {
             );
             // multicallData[n++] = abi.encodeCall(
             //     globals.setAddress,
-            //     (LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL, address(partyNFTRenderer))
+            //     (LibGlobals.GLOBAL_GOVERNANCE_NFT_RENDER_IMPL, )
             // );
             // multicallData[n++] = abi.encodeCall(
             //     globals.setAddress,
@@ -364,18 +372,8 @@ abstract contract Deploy {
             assembly {
                 mstore(multicallData, n)
             }
-            _trackDeployerGasBefore();
             globals.multicall(multicallData);
-            _trackDeployerGasAfter();
         }
-
-        // // transfer renderer storage ownership to multisig
-        // if (this.getDeployer() != deployConstants.partyDaoMultisig) {
-        //     console.log("  Transferring RendererStorage ownership to multisig");
-        //     _trackDeployerGasBefore();
-        //     rendererStorage.transferOwnership(deployConstants.partyDaoMultisig);
-        //     _trackDeployerGasAfter();
-        // }
     }
 
     function getDeployer() external view returns (address) {
@@ -468,7 +466,7 @@ contract DeployScript is Script, Deploy {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](12);
+        AddressMapping[] memory addressMapping = new AddressMapping[](13);
         addressMapping[0] = AddressMapping(
             "ProposalExecutionEngine",
             address(proposalExecutionEngine)
@@ -496,6 +494,7 @@ contract DeployScript is Script, Deploy {
         );
         addressMapping[10] = AddressMapping("CrowdfundFactory", address(crowdfundFactory));
         addressMapping[11] = AddressMapping("CrowdfundNFTRenderer", address(crowdfundNFTRenderer));
+        addressMapping[12] = AddressMapping("AtomicManualParty", address(atomicManualParty));
 
         console.log("");
         console.log("### Deployed addresses");
