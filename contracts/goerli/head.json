@@ -16,7 +16,7 @@
   "TokenGateKeeper": "sell_memberships",
   "RendererStorage": "genesis",
   "PixeldroidConsoleFont": "genesis",
-  "PartyNFTRenderer": "custom_token_renderer",
+  "PartyNFTRenderer": "add_party_cards",
   "MetadataRegistry": "custom_token_renderer",
   "MetadataProvider": "custom_token_renderer",
   "InitialETHCrowdfund": "contribution_fee_router",
