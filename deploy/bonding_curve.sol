@@ -30,9 +30,12 @@ import "../contracts/market-wrapper/NounsMarketWrapper.sol";
 import { AtomicManualParty } from "../contracts/crowdfund/AtomicManualParty.sol";
 import { ContributionRouter } from "../contracts/crowdfund/ContributionRouter.sol";
 import { AddPartyCardsAuthority } from "../contracts/authorities/AddPartyCardsAuthority.sol";
+import { SellPartyCardsAuthority } from "../contracts/authorities/SellPartyCardsAuthority.sol";
 import { SSTORE2MetadataProvider } from "../contracts/renderers/SSTORE2MetadataProvider.sol";
 import { BasicMetadataProvider } from "../contracts/renderers/BasicMetadataProvider.sol";
+import { OffChainSignatureValidator } from "../contracts/signature-validators/OffChainSignatureValidator.sol";
 import { BondingCurveAuthority } from "../contracts/authorities/BondingCurveAuthority.sol";
+import { MockZoraReserveAuctionCoreEth } from "test/proposals/MockZoraReserveAuctionCoreEth.sol";
 import "./LibDeployConstants.sol";
 
 abstract contract Deploy {
@@ -52,9 +55,51 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
+    Globals public globals = Globals(0x1b0e8E8DC71b29CE49038569dEF1B3Bc0120F602);
+    Party public party;
+    PartyFactory public partyFactory;
+    ProposalExecutionEngine public proposalExecutionEngine;
+    AtomicManualParty public atomicManualParty;
     BondingCurveAuthority public bondingCurveAuthority;
 
     function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
+        _switchDeployer(DeployerRole.Default);
+
+        // DEPLOY_PROPOSAL_EXECUTION_ENGINE
+        console.log("");
+        console.log("### ProposalExecutionEngine");
+        console.log("  Deploying - ProposalExecutionEngine");
+        IReserveAuctionCoreEth zora = new MockZoraReserveAuctionCoreEth();
+        IFractionalV1VaultFactory fractionalVaultFactory = IFractionalV1VaultFactory(
+            deployConstants.fractionalVaultFactory
+        );
+        _trackDeployerGasBefore();
+        proposalExecutionEngine = new ProposalExecutionEngine(
+            globals,
+            zora,
+            fractionalVaultFactory
+        );
+        _trackDeployerGasAfter();
+        console.log("  Deployed - ProposalExecutionEngine", address(proposalExecutionEngine));
+
+        // DEPLOY_PARTY_IMPLEMENTATION
+        console.log("");
+        console.log("### Party implementation");
+        console.log("  Deploying - Party implementation");
+        _trackDeployerGasBefore();
+        party = new Party(globals);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - Party implementation", address(party));
+
+        // DEPLOY_PARTY_FACTORY
+        console.log("");
+        console.log("### PartyFactory");
+        console.log("  Deploying - PartyFactory");
+        _switchDeployer(DeployerRole.PartyFactory);
+        _trackDeployerGasBefore();
+        partyFactory = new PartyFactory(globals);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - PartyFactory", address(partyFactory));
         _switchDeployer(DeployerRole.Default);
 
         // Deploy_BONDING_CURVE_AUTHORITY
@@ -70,6 +115,13 @@ abstract contract Deploy {
         );
         _trackDeployerGasAfter();
         console.log("  Deployed - BondingCurveAuthority", address(bondingCurveAuthority));
+
+        console.log("");
+        console.log("  Deploying - AtomicManualParty");
+        _trackDeployerGasBefore();
+        atomicManualParty = new AtomicManualParty(partyFactory);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - AtomicManualParty", address(atomicManualParty));
     }
 
     function getDeployer() external view returns (address) {
@@ -162,8 +214,15 @@ contract DeployScript is Script, Deploy {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](1);
-        addressMapping[0] = AddressMapping("BondingCurveAuthority", address(bondingCurveAuthority));
+        AddressMapping[] memory addressMapping = new AddressMapping[](5);
+        addressMapping[0] = AddressMapping(
+            "ProposalExecutionEngine",
+            address(proposalExecutionEngine)
+        );
+        addressMapping[1] = AddressMapping("PartyFactory", address(partyFactory));
+        addressMapping[2] = AddressMapping("Party", address(party));
+        addressMapping[3] = AddressMapping("BondingCurveAuthority", address(bondingCurveAuthority));
+        addressMapping[4] = AddressMapping("AtomicManualParty", address(atomicManualParty));
 
         console.log("");
         console.log("### Deployed addresses");
