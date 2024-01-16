@@ -23,7 +23,7 @@
   "RendererStorage": "custom_token_renderer",
   "PixeldroidConsoleFont": "custom_token_renderer",
   "CollectionBatchBuyOperator": "custom_token_renderer",
-  "AtomicManualParty": "krunker_strike",
+  "AtomicManualParty": "dynamic_party_cards",
   "ContributionRouter": "sell_memberships",
   "BasicMetadataProvider": "efficient_providers",
   "SSTORE2MetadataProvider": "efficient_providers",
