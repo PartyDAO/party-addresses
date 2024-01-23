@@ -16,7 +16,7 @@
   "MetadataRegistry": "custom_token_renderer",
   "MetadataProvider": "custom_token_renderer",
   "CrowdfundNFTRenderer": "krunker_strike",
-  "PartyNFTRenderer": "customize_external_urls",
+  "PartyNFTRenderer": "add_party_cards",
   "PartyHelpers": "custom_token_renderer",
   "AllowListGateKeeper": "sell_memberships",
   "TokenGateKeeper": "sell_memberships",
