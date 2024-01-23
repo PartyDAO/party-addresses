@@ -1,0 +1,1194 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "globals",
+        "type": "address",
+        "internalType": "contract IGlobals"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "IMPL",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "batchContribute",
+    "inputs": [
+      {
+        "name": "args",
+        "type": "tuple",
+        "internalType": "struct InitialETHCrowdfund.BatchContributeArgs",
+        "components": [
+          {
+            "name": "tokenIds",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "initialDelegate",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "values",
+            "type": "uint96[]",
+            "internalType": "uint96[]"
+          },
+          {
+            "name": "gateDatas",
+            "type": "bytes[]",
+            "internalType": "bytes[]"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPowers",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "batchContributeFor",
+    "inputs": [
+      {
+        "name": "args",
+        "type": "tuple",
+        "internalType": "struct InitialETHCrowdfund.BatchContributeForArgs",
+        "components": [
+          {
+            "name": "tokenIds",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "recipients",
+            "type": "address[]",
+            "internalType": "address payable[]"
+          },
+          {
+            "name": "initialDelegates",
+            "type": "address[]",
+            "internalType": "address[]"
+          },
+          {
+            "name": "values",
+            "type": "uint96[]",
+            "internalType": "uint96[]"
+          },
+          {
+            "name": "gateDatas",
+            "type": "bytes[]",
+            "internalType": "bytes[]"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPowers",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "batchRefund",
+    "inputs": [
+      {
+        "name": "tokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      {
+        "name": "revertOnFailure",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amounts",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "contribute",
+    "inputs": [
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "contribute",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "contributeFor",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "convertContributionToVotingPower",
+    "inputs": [
+      {
+        "name": "contribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "convertVotingPowerToContribution",
+    "inputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "contribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "delegationsByContributor",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "disableContributingForExistingCard",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "disableEmergencyExecute",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "emergencyExecute",
+    "inputs": [
+      {
+        "name": "targetAddress",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "targetCallData",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "amountEth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "emergencyExecuteDisabled",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "exchangeRate",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint160",
+        "internalType": "uint160"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "expiry",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint40",
+        "internalType": "uint40"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "finalize",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "fundingSplitBps",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "fundingSplitPaid",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "fundingSplitRecipient",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address payable"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "gateKeeper",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IGateKeeper"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "gateKeeperId",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes12",
+        "internalType": "bytes12"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getCrowdfundLifecycle",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "lifecycle",
+        "type": "uint8",
+        "internalType": "enum ETHCrowdfundBase.CrowdfundLifecycle"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "implementation",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "crowdfundOpts",
+        "type": "tuple",
+        "internalType": "struct InitialETHCrowdfund.InitialETHCrowdfundOptions",
+        "components": [
+          {
+            "name": "initialContributor",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "initialDelegate",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "minContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "disableContributingForExistingCard",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "minTotalContributions",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxTotalContributions",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "exchangeRate",
+            "type": "uint160",
+            "internalType": "uint160"
+          },
+          {
+            "name": "fundingSplitBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "fundingSplitRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "duration",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "gateKeeper",
+            "type": "address",
+            "internalType": "contract IGateKeeper"
+          },
+          {
+            "name": "gateKeeperId",
+            "type": "bytes12",
+            "internalType": "bytes12"
+          }
+        ]
+      },
+      {
+        "name": "partyOpts",
+        "type": "tuple",
+        "internalType": "struct InitialETHCrowdfund.ETHPartyOptions",
+        "components": [
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "customizationPresetId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "governanceOpts",
+            "type": "tuple",
+            "internalType": "struct Crowdfund.FixedGovernanceOpts",
+            "components": [
+              {
+                "name": "partyImpl",
+                "type": "address",
+                "internalType": "contract Party"
+              },
+              {
+                "name": "partyFactory",
+                "type": "address",
+                "internalType": "contract IPartyFactory"
+              },
+              {
+                "name": "hosts",
+                "type": "address[]",
+                "internalType": "address[]"
+              },
+              {
+                "name": "voteDuration",
+                "type": "uint40",
+                "internalType": "uint40"
+              },
+              {
+                "name": "executionDelay",
+                "type": "uint40",
+                "internalType": "uint40"
+              },
+              {
+                "name": "passThresholdBps",
+                "type": "uint16",
+                "internalType": "uint16"
+              },
+              {
+                "name": "feeBps",
+                "type": "uint16",
+                "internalType": "uint16"
+              },
+              {
+                "name": "feeRecipient",
+                "type": "address",
+                "internalType": "address payable"
+              }
+            ]
+          },
+          {
+            "name": "proposalEngineOpts",
+            "type": "tuple",
+            "internalType": "struct ProposalStorage.ProposalEngineOpts",
+            "components": [
+              {
+                "name": "enableAddAuthorityProposal",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowArbCallsToSpendPartyEth",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "allowOperators",
+                "type": "bool",
+                "internalType": "bool"
+              },
+              {
+                "name": "distributionsConfig",
+                "type": "uint8",
+                "internalType": "enum ProposalStorage.DistributionsConfig"
+              }
+            ]
+          },
+          {
+            "name": "preciousTokens",
+            "type": "address[]",
+            "internalType": "contract IERC721[]"
+          },
+          {
+            "name": "preciousTokenIds",
+            "type": "uint256[]",
+            "internalType": "uint256[]"
+          },
+          {
+            "name": "rageQuitTimestamp",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "authorities",
+            "type": "address[]",
+            "internalType": "address[]"
+          }
+        ]
+      },
+      {
+        "name": "customMetadataProvider",
+        "type": "address",
+        "internalType": "contract MetadataProvider"
+      },
+      {
+        "name": "customMetadata",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "initialized",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "maxContribution",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "maxTotalContributions",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "minContribution",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "minTotalContributions",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "party",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract Party"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "refund",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sendFundingSplit",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "splitAmount",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "totalContributions",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "Contributed",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "contributor",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "delegate",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmergencyExecute",
+    "inputs": [
+      {
+        "name": "target",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "data",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "amountEth",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmergencyExecuteDisabled",
+    "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Finalized",
+    "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FundingSplitSent",
+    "inputs": [
+      {
+        "name": "fundingSplitRecipient",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Refunded",
+    "inputs": [
+      {
+        "name": "contributor",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AboveMaximumContributionsError",
+    "inputs": [
+      {
+        "name": "contributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "maxContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "AlreadyInitialized",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ArityMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BelowMinimumContributionsError",
+    "inputs": [
+      {
+        "name": "contributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "minContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ContributingForExistingCardDisabledError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EthTransferFailed",
+    "inputs": [
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "errData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ExceedsRemainingContributionsError",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "remaining",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "FundingSplitAlreadyPaidError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FundingSplitNotConfiguredError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidDelegateError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidExchangeRateError",
+    "inputs": [
+      {
+        "name": "exchangeRate",
+        "type": "uint160",
+        "internalType": "uint160"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidFundingSplitRecipient",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidMessageValue",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MaxTotalContributionsCannotBeZeroError",
+    "inputs": [
+      {
+        "name": "maxTotalContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "MinGreaterThanMaxError",
+    "inputs": [
+      {
+        "name": "min",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "max",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "MinMaxDifferenceTooSmall",
+    "inputs": [
+      {
+        "name": "min",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "max",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotAllowedByGateKeeperError",
+    "inputs": [
+      {
+        "name": "contributor",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateKeeper",
+        "type": "address",
+        "internalType": "contract IGateKeeper"
+      },
+      {
+        "name": "gateKeeperId",
+        "type": "bytes12",
+        "internalType": "bytes12"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotEnoughContributionsError",
+    "inputs": [
+      {
+        "name": "totalContribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "minTotalContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotOwnerError",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlyDelegateCallError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyPartyDaoError",
+    "inputs": [
+      {
+        "name": "notDao",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlyPartyDaoOrHostError",
+    "inputs": [
+      {
+        "name": "notDao",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlyPartyHostError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyWhenEmergencyActionsAllowedError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Uint256ToUint40CastOutOfRangeError",
+    "inputs": [
+      {
+        "name": "u256",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "Uint256ToUint96CastOutOfRange",
+    "inputs": [
+      {
+        "name": "v",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "WrongLifecycleError",
+    "inputs": [
+      {
+        "name": "lc",
+        "type": "uint8",
+        "internalType": "enum ETHCrowdfundBase.CrowdfundLifecycle"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroVotingPowerError",
+    "inputs": []
+  }
+]

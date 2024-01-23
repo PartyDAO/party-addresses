@@ -1,0 +1,200 @@
+[
+  {
+    "type": "function",
+    "name": "getCurrentDelegates",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "members",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "membersAndDelegates",
+        "type": "tuple[]",
+        "internalType": "struct PartyHelpers.MemberAndDelegate[]",
+        "components": [
+          {
+            "name": "member",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "delegate",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getNftInfos",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "startTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "endTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "nftInfos",
+        "type": "tuple[]",
+        "internalType": "struct PartyHelpers.NftInfo[]",
+        "components": [
+          {
+            "name": "tokenId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intrinsicVotingPower",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getNftInfosBatch",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "tokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "nftInfos",
+        "type": "tuple[]",
+        "internalType": "struct PartyHelpers.NftInfo[]",
+        "components": [
+          {
+            "name": "tokenId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "intrinsicVotingPower",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRageQuitWithdrawAmounts",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "tokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      {
+        "name": "withdrawTokens",
+        "type": "address[]",
+        "internalType": "contract IERC20[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "withdrawAmounts",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getVotingPowersAt",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "voters",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint40",
+        "internalType": "uint40"
+      },
+      {
+        "name": "indexes",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "memberAndVotingPower",
+        "type": "tuple[]",
+        "internalType": "struct PartyHelpers.MemberAndVotingPower[]",
+        "components": [
+          {
+            "name": "member",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "votingPower",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  }
+]
