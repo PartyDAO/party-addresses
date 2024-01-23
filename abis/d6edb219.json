@@ -1,0 +1,850 @@
+[
+  {
+    "type": "function",
+    "name": "batchContribute",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "contributions",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPowers",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "batchContributeFor",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "recipients",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "initialDelegates",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "contributions",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPowers",
+        "type": "uint96[]",
+        "internalType": "uint96[]"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "contribute",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "contributeFor",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "convertContributionToVotingPower",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "contribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "convertVotingPowerToContribution",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "votingPower",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "createFixedMembershipSale",
+    "inputs": [
+      {
+        "name": "opts",
+        "type": "tuple",
+        "internalType": "struct SellPartyCardsAuthority.FixedMembershipSaleOpts",
+        "components": [
+          {
+            "name": "pricePerMembership",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "votingPowerPerMembership",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "totalMembershipsForSale",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "fundingSplitBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "fundingSplitRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "duration",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "gateKeeper",
+            "type": "address",
+            "internalType": "contract IGateKeeper"
+          },
+          {
+            "name": "gateKeeperId",
+            "type": "bytes12",
+            "internalType": "bytes12"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createFlexibleMembershipSale",
+    "inputs": [
+      {
+        "name": "opts",
+        "type": "tuple",
+        "internalType": "struct SellPartyCardsAuthority.FlexibleMembershipSaleOpts",
+        "components": [
+          {
+            "name": "minContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxTotalContributions",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "exchangeRate",
+            "type": "uint160",
+            "internalType": "uint160"
+          },
+          {
+            "name": "fundingSplitBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "fundingSplitRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "duration",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "gateKeeper",
+            "type": "address",
+            "internalType": "contract IGateKeeper"
+          },
+          {
+            "name": "gateKeeperId",
+            "type": "bytes12",
+            "internalType": "bytes12"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "finalize",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getFixedMembershipSaleInfo",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "pricePerMembership",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "votingPowerPerMembership",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "totalContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "totalMembershipsForSale",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "fundingSplitBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "fundingSplitRecipient",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
+        "name": "expiry",
+        "type": "uint40",
+        "internalType": "uint40"
+      },
+      {
+        "name": "gateKeeper",
+        "type": "address",
+        "internalType": "contract IGateKeeper"
+      },
+      {
+        "name": "gateKeeperId",
+        "type": "bytes12",
+        "internalType": "bytes12"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getFlexibleMembershipSaleInfo",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "minContribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "maxContribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "totalContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "maxTotalContributions",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "exchangeRate",
+        "type": "uint160",
+        "internalType": "uint160"
+      },
+      {
+        "name": "fundingSplitBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "fundingSplitRecipient",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
+        "name": "expiry",
+        "type": "uint40",
+        "internalType": "uint40"
+      },
+      {
+        "name": "gateKeeper",
+        "type": "address",
+        "internalType": "contract IGateKeeper"
+      },
+      {
+        "name": "gateKeeperId",
+        "type": "bytes12",
+        "internalType": "bytes12"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isSaleActive",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lastSaleId",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "lastId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "CreatedSale",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "state",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct SellPartyCardsAuthority.SaleState",
+        "components": [
+          {
+            "name": "minContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxContribution",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "expiry",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "fundingSplitBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "fundingSplitRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "totalContributions",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "maxTotalContributions",
+            "type": "uint96",
+            "internalType": "uint96"
+          },
+          {
+            "name": "exchangeRate",
+            "type": "uint160",
+            "internalType": "uint160"
+          },
+          {
+            "name": "gateKeeper",
+            "type": "address",
+            "internalType": "contract IGateKeeper"
+          },
+          {
+            "name": "gateKeeperId",
+            "type": "bytes12",
+            "internalType": "bytes12"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Finalized",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saleId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MintedFromSale",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "saledId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "contributor",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "contribution",
+        "type": "uint96",
+        "indexed": false,
+        "internalType": "uint96"
+      },
+      {
+        "name": "initialDelegate",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "ArityMismatch",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EthTransferFailed",
+    "inputs": [
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "errData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ExceedsRemainingContributionsError",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "remaining",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidBpsError",
+    "inputs": [
+      {
+        "name": "fundingSplitBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialDelegateError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidMessageValue",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MinGreaterThanMaxError",
+    "inputs": [
+      {
+        "name": "minContribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "maxContribution",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotAllowedByGateKeeperError",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "gateKeeper",
+        "type": "address",
+        "internalType": "contract IGateKeeper"
+      },
+      {
+        "name": "gateKeeperId",
+        "type": "bytes12",
+        "internalType": "bytes12"
+      },
+      {
+        "name": "gateData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotAuthorizedError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyPartyHostError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OutOfBoundsContributionsError",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint96",
+        "internalType": "uint96"
+      },
+      {
+        "name": "bound",
+        "type": "uint96",
+        "internalType": "uint96"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SaleInactiveError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Uint256ToUint128CastOutOfRangeError",
+    "inputs": [
+      {
+        "name": "u256",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "Uint256ToUint96CastOutOfRange",
+    "inputs": [
+      {
+        "name": "v",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ZeroExchangeRateError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroMaxTotalContributionsError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroVotingPowerError",
+    "inputs": []
+  }
+]

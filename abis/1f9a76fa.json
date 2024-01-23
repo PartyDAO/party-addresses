@@ -1,0 +1,99 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "globals",
+        "type": "address",
+        "internalType": "contract IGlobals"
+      },
+      {
+        "name": "rendererStorage",
+        "type": "address",
+        "internalType": "contract RendererStorage"
+      },
+      {
+        "name": "font",
+        "type": "address",
+        "internalType": "contract IFont"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "contractURI",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "generateSVG",
+    "inputs": [
+      {
+        "name": "partyName",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "contributionAmount",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "status",
+        "type": "uint8",
+        "internalType": "enum CrowdfundNFTRenderer.CrowdfundStatus"
+      },
+      {
+        "name": "color",
+        "type": "uint8",
+        "internalType": "enum Color"
+      },
+      {
+        "name": "isDarkMode",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tokenURI",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "error",
+    "name": "InvalidTokenIdError",
+    "inputs": []
+  }
+]
