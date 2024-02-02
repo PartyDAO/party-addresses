@@ -189,11 +189,9 @@ contract DeployScript is Script, Deploy {
         console.log("Ending deploy script.");
     }
 
-    function generateJSONString(AddressMapping[] memory parts)
-        private
-        pure
-        returns (string memory)
-    {
+    function generateJSONString(
+        AddressMapping[] memory parts
+    ) private pure returns (string memory) {
         string memory vals = "";
         for (uint256 i; i < parts.length; ++i) {
             string memory newValue = string.concat(
