@@ -10,7 +10,6 @@ import "../contracts/crowdfund/CollectionBatchBuyCrowdfund.sol";
 import "../contracts/operators/CollectionBatchBuyOperator.sol";
 import "../contracts/operators/ERC20SwapOperator.sol";
 import "../contracts/crowdfund/InitialETHCrowdfund.sol";
-import "../contracts/crowdfund/ReraiseETHCrowdfund.sol";
 import "../contracts/crowdfund/CrowdfundFactory.sol";
 import "../contracts/distribution/TokenDistributor.sol";
 import "../contracts/gatekeepers/AllowListGateKeeper.sol";
@@ -34,6 +33,8 @@ import { AddPartyCardsAuthority } from "../contracts/authorities/AddPartyCardsAu
 import { SellPartyCardsAuthority } from "../contracts/authorities/SellPartyCardsAuthority.sol";
 import { SSTORE2MetadataProvider } from "../contracts/renderers/SSTORE2MetadataProvider.sol";
 import { BasicMetadataProvider } from "../contracts/renderers/BasicMetadataProvider.sol";
+import { OffChainSignatureValidator } from "../contracts/signature-validators/OffChainSignatureValidator.sol";
+import { BondingCurveAuthority } from "../contracts/authorities/BondingCurveAuthority.sol";
 import "./LibDeployConstants.sol";
 
 abstract contract Deploy {
@@ -53,32 +54,80 @@ abstract contract Deploy {
     mapping(address => uint256) private _deployerGasUsage;
 
     // temporary variables to store deployed contract addresses
-    ContributionRouter public contributionRouter;
-    SellPartyCardsAuthority public sellPartyCardsAuthority;
+    Globals public globals;
+    InitialETHCrowdfund public initialETHCrowdfund;
+    CrowdfundFactory public crowdfundFactory;
+    Party public party;
+    PartyFactory public partyFactory;
+    AtomicManualParty public atomicManualParty;
+    BondingCurveAuthority public bondingCurveAuthority;
 
     function deploy(LibDeployConstants.DeployConstants memory deployConstants) public virtual {
         _switchDeployer(DeployerRole.Default);
 
-        // DEPLOY_SELL_PARTY_CARDS_AUTHORITY
+        // DEPLOY_PARTY_IMPLEMENTATION
         console.log("");
-        console.log("### SellPartyCardsAuthority");
-        console.log("  Deploying - SellPartyCardsAuthority");
+        console.log("### Party implementation");
+        console.log("  Deploying - Party implementation");
         _trackDeployerGasBefore();
-        sellPartyCardsAuthority = new SellPartyCardsAuthority();
+        party = new Party(globals);
         _trackDeployerGasAfter();
-        console.log("  Deployed - SellPartyCardsAuthority", address(sellPartyCardsAuthority));
+        console.log("  Deployed - Party implementation", address(party));
 
-        // Deploy CONTRIBUTION_ROUTER
+        // DEPLOY_PARTY_FACTORY
         console.log("");
-        console.log("### ContributionRouter");
-        console.log("  Deploying - ContributionRouter");
+        console.log("### PartyFactory");
+        console.log("  Deploying - PartyFactory");
+        _switchDeployer(DeployerRole.PartyFactory);
         _trackDeployerGasBefore();
-        contributionRouter = new ContributionRouter(
-            deployConstants.partyDaoMultisig,
-            deployConstants.contributionRouterInitialFee
+        partyFactory = new PartyFactory(globals);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - PartyFactory", address(partyFactory));
+        _switchDeployer(DeployerRole.Default);
+
+        // DEPLOY_INITIAL_ETH_CF_IMPLEMENTATION
+        console.log("");
+        console.log("### InitialETHCrowdfund crowdfund implementation");
+        console.log("  Deploying - InitialETHCrowdfund crowdfund implementation");
+        _trackDeployerGasBefore();
+        initialETHCrowdfund = new InitialETHCrowdfund(globals);
+        _trackDeployerGasAfter();
+        console.log(
+            "  Deployed - InitialETHCrowdfund crowdfund implementation",
+            address(initialETHCrowdfund)
+        );
+
+        // DEPLOY_PARTY_CROWDFUND_FACTORY
+        console.log("");
+        console.log("### CrowdfundFactory");
+        console.log("  Deploying - CrowdfundFactory");
+        _switchDeployer(DeployerRole.CrowdfundFactory);
+        _trackDeployerGasBefore();
+        crowdfundFactory = new CrowdfundFactory();
+        _trackDeployerGasAfter();
+        console.log("  Deployed - CrowdfundFactory", address(crowdfundFactory));
+        _switchDeployer(DeployerRole.Default);
+
+        // Deploy_BONDING_CURVE_AUTHORITY
+        console.log("");
+        console.log("### BondingCurveAuthority");
+        console.log("  Deploying - BondingCurveAuthority");
+        _trackDeployerGasBefore();
+        bondingCurveAuthority = new BondingCurveAuthority(
+            payable(deployConstants.partyDaoMultisig),
+            250,
+            1000,
+            250
         );
         _trackDeployerGasAfter();
-        console.log("  Deployed - ContributionRouter", address(contributionRouter));
+        console.log("  Deployed - BondingCurveAuthority", address(bondingCurveAuthority));
+
+        console.log("");
+        console.log("  Deploying - AtomicManualParty");
+        _trackDeployerGasBefore();
+        atomicManualParty = new AtomicManualParty(partyFactory);
+        _trackDeployerGasAfter();
+        console.log("  Deployed - AtomicManualParty", address(atomicManualParty));
     }
 
     function getDeployer() external view returns (address) {
@@ -171,12 +220,13 @@ contract DeployScript is Script, Deploy {
         Deploy.deploy(deployConstants);
         vm.stopBroadcast();
 
-        AddressMapping[] memory addressMapping = new AddressMapping[](2);
-        addressMapping[0] = AddressMapping("ContributionRouter", address(contributionRouter));
-        addressMapping[1] = AddressMapping(
-            "SellPartyCardsAuthority",
-            address(sellPartyCardsAuthority)
-        );
+        AddressMapping[] memory addressMapping = new AddressMapping[](6);
+        addressMapping[0] = AddressMapping("PartyFactory", address(partyFactory));
+        addressMapping[1] = AddressMapping("Party", address(party));
+        addressMapping[2] = AddressMapping("InitialETHCrowdfund", address(initialETHCrowdfund));
+        addressMapping[3] = AddressMapping("CrowdfundFactory", address(crowdfundFactory));
+        addressMapping[4] = AddressMapping("AtomicManualParty", address(atomicManualParty));
+        addressMapping[5] = AddressMapping("BondingCurveAuthority", address(bondingCurveAuthority));
 
         console.log("");
         console.log("### Deployed addresses");
