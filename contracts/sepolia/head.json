@@ -12,7 +12,7 @@
   "InitialETHCrowdfund": "bonding_curve",
   "CollectionBatchBuyOperator": "krunker_strike",
   "ERC20SwapOperator": "krunker_strike",
-  "CrowdfundFactory": "krunker_strike",
+  "CrowdfundFactory": "bonding_curve",
   "MetadataRegistry": "krunker_strike",
   "BasicMetadataProvider": "krunker_strike",
   "SSTORE2MetadataProvider": "krunker_strike",
