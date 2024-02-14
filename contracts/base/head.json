@@ -30,5 +30,6 @@
   "AddPartyCardsAuthority": "add_party_cards",
   "SellPartyCardsAuthority": "sell_memberships",
   "OffChainSignatureValidator": "krunker_strike",
-  "BondingCurveAuthority": "bonding_curve"
+  "BondingCurveAuthority": "bonding_curve",
+  "EZPartyBuilder": "ez_party_builder"
 }
