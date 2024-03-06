@@ -1,0 +1,209 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "globals",
+        "type": "address",
+        "internalType": "contract IGlobals"
+      },
+      {
+        "name": "registrars",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "blast",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "governor",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getMetadata",
+    "inputs": [
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getProvider",
+    "inputs": [
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "provider",
+        "type": "address",
+        "internalType": "contract IMetadataProvider"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isRegistrar",
+    "inputs": [
+      {
+        "name": "registrar",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "multicall",
+    "inputs": [
+      {
+        "name": "multicallData",
+        "type": "bytes[]",
+        "internalType": "bytes[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setProvider",
+    "inputs": [
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "provider",
+        "type": "address",
+        "internalType": "contract IMetadataProvider"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setRegistrar",
+    "inputs": [
+      {
+        "name": "registrar",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "canSetData",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ProviderSet",
+    "inputs": [
+      {
+        "name": "instance",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "provider",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract IMetadataProvider"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RegistrarSet",
+    "inputs": [
+      {
+        "name": "registrar",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "instance",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "canSetData",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "NotAuthorized",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "instance",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  }
+]
