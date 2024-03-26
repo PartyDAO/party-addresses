@@ -1,6 +1,6 @@
 {
   "Globals": "sell_memberships",
-  "TokenDistributor": "sell_memberships",
+  "TokenDistributor": "erc20_crowdfund",
   "ProposalExecutionEngine": "krunker_strike",
   "Party": "bonding_curve",
   "PartyFactory": "bonding_curve",
@@ -18,7 +18,7 @@
   "BasicMetadataProvider": "sell_memberships",
   "SSTORE2MetadataProvider": "sell_memberships",
   "CrowdfundNFTRenderer": "krunker_strike",
-  "PartyNFTRenderer": "sell_memberships",
+  "PartyNFTRenderer": "erc20_crowdfund",
   "PartyHelpers": "sell_memberships",
   "AllowListGateKeeper": "sell_memberships",
   "TokenGateKeeper": "sell_memberships",

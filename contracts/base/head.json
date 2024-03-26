@@ -1,6 +1,6 @@
 {
   "Globals": "contribution_fee_router",
-  "TokenDistributor": "add_party_cards",
+  "TokenDistributor": "erc20_crowdfund",
   "ProposalExecutionEngine": "krunker_strike",
   "Party": "bonding_curve",
   "PartyFactory": "bonding_curve",
@@ -16,7 +16,7 @@
   "MetadataRegistry": "contribution_fee_router",
   "MetadataProvider": "contribution_fee_router",
   "CrowdfundNFTRenderer": "krunker_strike",
-  "PartyNFTRenderer": "add_party_cards",
+  "PartyNFTRenderer": "erc20_crowdfund",
   "PartyHelpers": "contribution_fee_router",
   "AllowListGateKeeper": "sell_memberships",
   "TokenGateKeeper": "sell_memberships",
