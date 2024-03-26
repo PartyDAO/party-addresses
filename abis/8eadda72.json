@@ -1,0 +1,1023 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "globals",
+        "type": "address",
+        "internalType": "contract IGlobals"
+      },
+      {
+        "name": "emergencyDisabledTimestamp",
+        "type": "uint40",
+        "internalType": "uint40"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "EMERGENCY_DISABLED_TIMESTAMP",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint40",
+        "internalType": "uint40"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "GLOBALS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IGlobals"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "batchClaim",
+    "inputs": [
+      {
+        "name": "infos",
+        "type": "tuple[]",
+        "internalType": "struct ITokenDistributor.DistributionInfo[]",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      },
+      {
+        "name": "partyTokenIds",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amountsClaimed",
+        "type": "uint128[]",
+        "internalType": "uint128[]"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "batchClaimFee",
+    "inputs": [
+      {
+        "name": "infos",
+        "type": "tuple[]",
+        "internalType": "struct ITokenDistributor.DistributionInfo[]",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      },
+      {
+        "name": "recipients",
+        "type": "address[]",
+        "internalType": "address payable[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "inputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amountClaimed",
+        "type": "uint128",
+        "internalType": "uint128"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "claimFee",
+    "inputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address payable"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createErc20Distribution",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "feeRecipient",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
+        "name": "feeBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createNativeDistribution",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "feeRecipient",
+        "type": "address",
+        "internalType": "address payable"
+      },
+      {
+        "name": "feeBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "emergencyExecute",
+    "inputs": [
+      {
+        "name": "targetAddress",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "targetCallData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getClaimAmount",
+    "inputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint128",
+        "internalType": "uint128"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRemainingMemberSupply",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "distributionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint128",
+        "internalType": "uint128"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "hasPartyTokenIdClaimed",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "distributionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "lastDistributionIdPerParty",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract Party"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "wasFeeClaimed",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "internalType": "contract Party"
+      },
+      {
+        "name": "distributionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "DistributionClaimedByPartyToken",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "owner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenType",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum ITokenDistributor.TokenType"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amountClaimed",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DistributionCreated",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "info",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DistributionFeeClaimed",
+    "inputs": [
+      {
+        "name": "party",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract Party"
+      },
+      {
+        "name": "feeRecipient",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenType",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum ITokenDistributor.TokenType"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EmergencyExecute",
+    "inputs": [
+      {
+        "name": "target",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "data",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "DistributionAlreadyClaimedByPartyTokenError",
+    "inputs": [
+      {
+        "name": "distributionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "DistributionFeeAlreadyClaimedError",
+    "inputs": [
+      {
+        "name": "distributionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "EmergencyActionsNotAllowedError",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EthTransferFailed",
+    "inputs": [
+      {
+        "name": "receiver",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "errData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidDistributionInfoError",
+    "inputs": [
+      {
+        "name": "info",
+        "type": "tuple",
+        "internalType": "struct ITokenDistributor.DistributionInfo",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum ITokenDistributor.TokenType"
+          },
+          {
+            "name": "distributionId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "party",
+            "type": "address",
+            "internalType": "contract Party"
+          },
+          {
+            "name": "feeRecipient",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "memberSupply",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "fee",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "totalShares",
+            "type": "uint96",
+            "internalType": "uint96"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidDistributionSupplyError",
+    "inputs": [
+      {
+        "name": "supply",
+        "type": "uint128",
+        "internalType": "uint128"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidFeeBpsError",
+    "inputs": [
+      {
+        "name": "feeBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "MustOwnTokenError",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "expectedOwner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotATokenError",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "contract IERC20"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlyFeeRecipientError",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "feeRecipient",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlyPartyDaoError",
+    "inputs": [
+      {
+        "name": "notDao",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "partyDao",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TokenIdAboveMaxError",
+    "inputs": [
+      {
+        "name": "partyTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "maxTokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenTransferFailedError",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "Uint256ToUint128CastOutOfRangeError",
+    "inputs": [
+      {
+        "name": "u256",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  }
+]
