@@ -1,6 +1,6 @@
 {
   "Globals": "krunker_strike",
-  "TokenDistributor": "krunker_strike",
+  "TokenDistributor": "erc20_crowdfund",
   "ProposalExecutionEngine": "bonding_curve",
   "Party": "bonding_curve",
   "PartyFactory": "bonding_curve",
@@ -17,7 +17,7 @@
   "BasicMetadataProvider": "krunker_strike",
   "SSTORE2MetadataProvider": "krunker_strike",
   "CrowdfundNFTRenderer": "krunker_strike",
-  "PartyNFTRenderer": "krunker_strike",
+  "PartyNFTRenderer": "erc20_crowdfund",
   "PartyHelpers": "krunker_strike",
   "AllowListGateKeeper": "krunker_strike",
   "TokenGateKeeper": "krunker_strike",
