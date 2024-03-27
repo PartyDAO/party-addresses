@@ -1,6 +1,6 @@
 {
   "Globals": "genesis",
-  "TokenDistributor": "add_party_cards",
+  "TokenDistributor": "erc20_crowdfund",
   "ProposalExecutionEngine": "krunker_strike",
   "Party": "bonding_curve",
   "PartyFactory": "bonding_curve",
@@ -16,7 +16,7 @@
   "TokenGateKeeper": "sell_memberships",
   "RendererStorage": "genesis",
   "PixeldroidConsoleFont": "genesis",
-  "PartyNFTRenderer": "add_party_cards",
+  "PartyNFTRenderer": "erc20_crowdfund",
   "MetadataRegistry": "custom_token_renderer",
   "InitialETHCrowdfund": "bonding_curve",
   "CollectionBatchBuyOperator": "1.2.1",
