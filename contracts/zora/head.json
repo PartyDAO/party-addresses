@@ -1,6 +1,6 @@
 {
   "Globals": "sell_memberships",
-  "TokenDistributor": "sell_memberships",
+  "TokenDistributor": "erc20_crowdfund",
   "ProposalExecutionEngine": "krunker_strike",
   "Party": "bonding_curve",
   "PartyFactory": "bonding_curve",
@@ -13,12 +13,12 @@
   "AddPartyCardsAuthority": "sell_memberships",
   "CollectionBatchBuyOperator": "sell_memberships",
   "ERC20SwapOperator": "sell_memberships",
-  "CrowdfundFactory": "bonding_curve",
+  "CrowdfundFactory": "erc20_crowdfund",
   "MetadataRegistry": "sell_memberships",
   "BasicMetadataProvider": "sell_memberships",
   "SSTORE2MetadataProvider": "sell_memberships",
   "CrowdfundNFTRenderer": "krunker_strike",
-  "PartyNFTRenderer": "sell_memberships",
+  "PartyNFTRenderer": "erc20_crowdfund",
   "PartyHelpers": "sell_memberships",
   "AllowListGateKeeper": "sell_memberships",
   "TokenGateKeeper": "sell_memberships",
@@ -28,5 +28,6 @@
   "ContributionRouter": "sell_memberships",
   "SellPartyCardsAuthority": "sell_memberships",
   "OffChainSignatureValidator": "krunker_strike",
-  "BondingCurveAuthority": "bonding_curve"
+  "BondingCurveAuthority": "bonding_curve",
+  "ERC20LaunchCrowdfund": "erc20_crowdfund"
 }
