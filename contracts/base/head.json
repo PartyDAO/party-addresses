@@ -31,7 +31,7 @@
   "SellPartyCardsAuthority": "sell_memberships",
   "OffChainSignatureValidator": "krunker_strike",
   "BondingCurveAuthority": "bonding_curve",
-  "ERC20LaunchCrowdfund": "erc20_crowdfund",
+  "ERC20LaunchCrowdfund": "erc20_creator_v3",
   "ERC20CreatorV3": "erc20_creator_v3",
   "FeeCollector": "erc20_creator_v3"
 }
