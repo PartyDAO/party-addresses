@@ -12,7 +12,7 @@
   "InitialETHCrowdfund": "bonding_curve",
   "CollectionBatchBuyOperator": "krunker_strike",
   "ERC20SwapOperator": "krunker_strike",
-  "CrowdfundFactory": "erc20_crowdfund",
+  "CrowdfundFactory": "settable_fee_recipient",
   "MetadataRegistry": "krunker_strike",
   "BasicMetadataProvider": "krunker_strike",
   "SSTORE2MetadataProvider": "krunker_strike",
@@ -29,7 +29,7 @@
   "SellPartyCardsAuthority": "krunker_strike",
   "OffChainSignatureValidator": "krunker_strike",
   "BondingCurveAuthority": "bonding_curve",
-  "ERC20LaunchCrowdfund": "erc20_creator_v3",
+  "ERC20LaunchCrowdfund": "settable_fee_recipient",
   "ERC20CreatorV3": "erc20_creator_v3",
   "FeeCollector": "erc20_creator_v3"
 }
